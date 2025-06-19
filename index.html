@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyApp - 創新移動應用程式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .features {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .app-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-info h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .info-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-item h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .ads-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">MyApp</div>
+            <ul class="nav-links">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#features">功能</a></li>
+                <li><a href="#about">關於</a></li>
+                <li><a href="#contact">聯絡</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>歡迎使用 MyApp</h1>
+                <p>革命性的移動應用程式，為您的生活帶來便利與創新</p>
+                <a href="#download" class="cta-button">立即下載</a>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2>核心功能</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>高效能體驗</h3>
+                        <p>採用最新技術打造，提供流暢快速的使用體驗，讓您享受無縫操作。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>安全保護</h3>
+                        <p>多層加密技術保護您的隱私資料，確保所有資訊都在最安全的環境中處理。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>美觀介面</h3>
+                        <p>精心設計的使用者介面，直觀易用，讓每一次互動都成為愉悅的體驗。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="app-info" id="about">
+            <div class="container">
+                <h2>應用程式資訊</h2>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                    MyApp 是一款創新的移動應用程式，致力於為用戶提供最佳的數位體驗。
+                </p>
+                
+                <div class="info-content">
+                    <div class="info-item">
+                        <h3>平台支援</h3>
+                        <p>支援 iOS 和 Android 雙平台，確保所有用戶都能享受我們的服務。</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>更新頻率</h3>
+                        <p>定期更新功能和修復問題，持續改善用戶體驗。</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>客戶支援</h3>
+                        <p>提供24/7客戶服務，隨時解答您的疑問和需求。</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>免費使用</h3>
+                        <p>核心功能完全免費，讓每個人都能享受優質的應用程式體驗。</p>
+                    </div>
+                </div>
+
+                <div class="ads-info">
+                    <h4>廣告合作夥伴資訊</h4>
+                    <p>本應用程式與 Google AdSense 合作，為您提供相關的廣告內容。我們承諾所有廣告都經過嚴格審核，確保內容適宜且不影響您的使用體驗。</p>
+                    <small>廣告發布商 ID: pub-9103633528733447</small>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2025 MyApp. 版權所有。</p>
+            <p>聯絡我們：info@myapp.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滾動效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 動態載入效果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .info-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // CTA 按鈕點擊效果
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('感謝您的興趣！請前往 App Store 或 Google Play 商店搜尋 "MyApp" 進行下載。');
+        });
+    </script>
+
+    <!-- ads.txt 內容作為隱藏元素存在，供搜索引擎和廣告平台識別 -->
+    <div style="display: none;" id="ads-txt-content">
+        google.com, pub-9103633528733447, DIRECT, f08c47fec0942fa0
+    </div>
+</body>
+</html>
