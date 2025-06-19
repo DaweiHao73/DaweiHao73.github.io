@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyApp - 創新移動應用程式</title>
+    <title>TT310 Inventory App - 智慧庫存管理解決方案</title>
+    <meta name="description" content="TT310 Inventory App 是專為iOS設備打造的智慧庫存管理助手，結合VisionKit技術，提供全方位庫存控制解決方案。">
     <style>
         * {
             margin: 0;
@@ -12,11 +13,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1d1d1f;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -26,14 +27,15 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
         nav {
@@ -44,9 +46,16 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "📦";
+            font-size: 1.5rem;
         }
 
         .nav-links {
@@ -56,16 +65,18 @@
         }
 
         .nav-links a {
-            color: white;
+            color: #1d1d1f;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 25px;
+            position: relative;
         }
 
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
             transform: translateY(-2px);
         }
 
@@ -75,36 +86,82 @@
 
         .hero {
             text-align: center;
-            padding: 4rem 0;
+            padding: 6rem 0;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             animation: fadeInUp 1s ease-out;
+            font-weight: 800;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
             animation: fadeInUp 1s ease-out 0.2s both;
+            font-weight: 600;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .cta-button:hover {
@@ -113,100 +170,263 @@
         }
 
         .features {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 6rem 0;
             margin: 2rem 0;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
 
         .features h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            font-weight: 700;
+        }
+
+        .features-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .benefits {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 6rem 0;
+            margin: 2rem 0;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .benefits h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #1d1d1f;
+            font-weight: 700;
+        }
+
+        .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .feature-card {
-            background: white;
-            padding: 2rem;
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            transform: translateX(10px);
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1d1d1f;
+        }
+
+        .benefit-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 6rem 0;
+            margin: 2rem 0;
+            border-radius: 30px;
             text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s linear infinite;
         }
 
-        .feature-icon {
+        .download-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-section h2 {
             font-size: 3rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
+        .download-section p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
         }
 
-        .app-info {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 4rem 0;
+        .tips {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 6rem 0;
             margin: 2rem 0;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
         }
 
-        .app-info h2 {
+        .tips h2 {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
+            margin-bottom: 3rem;
+            color: #1d1d1f;
+            font-weight: 700;
         }
 
-        .info-content {
+        .tips-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
-        .info-item {
+        .tip-item {
             background: white;
             padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .info-item h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            text-align: center;
-            padding: 2rem 0;
+            padding: 4rem 0 2rem;
             margin-top: 2rem;
         }
 
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
         .ads-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .ads-info h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
         }
 
         @keyframes fadeInUp {
@@ -220,17 +440,40 @@
             }
         }
 
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
             }
             
             .nav-links {
                 display: none;
             }
             
-            .feature-grid {
+            .feature-grid,
+            .benefits-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features h2,
+            .benefits h2,
+            .download-section h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -238,11 +481,12 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo">MyApp</div>
+            <div class="logo">TT310 Inventory</div>
             <ul class="nav-links">
                 <li><a href="#home">首頁</a></li>
                 <li><a href="#features">功能</a></li>
-                <li><a href="#about">關於</a></li>
+                <li><a href="#benefits">優勢</a></li>
+                <li><a href="#download">下載</a></li>
                 <li><a href="#contact">聯絡</a></li>
             </ul>
         </nav>
@@ -251,65 +495,140 @@
     <main>
         <section class="hero" id="home">
             <div class="container">
-                <h1>歡迎使用 MyApp</h1>
-                <p>革命性的移動應用程式，為您的生活帶來便利與創新</p>
-                <a href="#download" class="cta-button">立即下載</a>
+                <div class="hero-content">
+                    <h1>TT310 Inventory App</h1>
+                    <p class="subtitle">📦 讓庫存管理變得簡單高效</p>
+                    <p class="description">
+                        專業庫存管理助手！專為iOS設備打造，結合先進的VisionKit技術與實用功能，為您的業務提供全方位的庫存控制，讓每項物品都在掌握之中。
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button" target="_blank">
+                            🍎 App Store 下載
+                        </a>
+                        <a href="#features" class="cta-button secondary">
+                            📋 了解功能
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="features" id="features">
             <div class="container">
-                <h2>核心功能</h2>
+                <h2>✨ 核心功能特色</h2>
+                <p class="features-subtitle">強大功能組合，打造完美庫存管理體驗</p>
+                
                 <div class="feature-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3>高效能體驗</h3>
-                        <p>採用最新技術打造，提供流暢快速的使用體驗，讓您享受無縫操作。</p>
+                        <span class="feature-icon">📱</span>
+                        <h3>互動式庫存導覽與物品資訊</h3>
+                        <p>詳細記錄每項物品的規格、位置與狀態資訊，讓您隨時掌握庫存動態，提升管理效率。</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>安全保護</h3>
-                        <p>多層加密技術保護您的隱私資料，確保所有資訊都在最安全的環境中處理。</p>
+                        <span class="feature-icon">🎯</span>
+                        <h3>個人化管理建議</h3>
+                        <p>根據您的業務需求，提供客製化的庫存管理策略，智慧分析助您做出最佳決策。</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎨</div>
-                        <h3>美觀介面</h3>
-                        <p>精心設計的使用者介面，直觀易用，讓每一次互動都成為愉悅的體驗。</p>
+                        <span class="feature-icon">📷</span>
+                        <h3>VisionKit智慧掃描技術</h3>
+                        <p>快速掃描條碼、QR碼或文字，自動讀取並建檔物品資料，大幅提升資料輸入效率。</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📅</span>
+                        <h3>補貨與維護行事曆</h3>
+                        <p>追蹤補貨時程、維護週期與重要提醒事項，確保庫存水準維持在最佳狀態。</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🗺️</span>
+                        <h3>室內導航系統</h3>
+                        <p>輕鬆找到特定倉庫區域或物品存放位置，節省尋找時間，提升工作效率。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="app-info" id="about">
+        <section class="benefits" id="benefits">
             <div class="container">
-                <h2>應用程式資訊</h2>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
-                    MyApp 是一款創新的移動應用程式，致力於為用戶提供最佳的數位體驗。
-                </p>
+                <h2>🌟 為什麼選擇TT310 Inventory App？</h2>
                 
-                <div class="info-content">
-                    <div class="info-item">
-                        <h3>平台支援</h3>
-                        <p>支援 iOS 和 Android 雙平台，確保所有用戶都能享受我們的服務。</p>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📊</span>
+                        <div class="benefit-content">
+                            <h3>高效庫存控制</h3>
+                            <p>從混亂管理到井然有序的完美轉換，讓庫存控制變得輕鬆簡單。</p>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h3>更新頻率</h3>
-                        <p>定期更新功能和修復問題，持續改善用戶體驗。</p>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📲</span>
+                        <div class="benefit-content">
+                            <h3>操作簡單直覺</h3>
+                            <p>優雅的使用者介面設計，員工都能快速上手使用，無需複雜培訓。</p>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h3>客戶支援</h3>
-                        <p>提供24/7客戶服務，隨時解答您的疑問和需求。</p>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🔄</span>
+                        <div class="benefit-content">
+                            <h3>即時庫存更新</h3>
+                            <p>進出貨、調撥資訊即時同步，確保庫存資料的準確性與即時性。</p>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h3>免費使用</h3>
-                        <p>核心功能完全免費，讓每個人都能享受優質的應用程式體驗。</p>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📱</span>
+                        <div class="benefit-content">
+                            <h3>iOS原生優化</h3>
+                            <p>專為iPhone和iPad設計，性能卓越，充分發揮蘋果設備的強大功能。</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📷</span>
+                        <div class="benefit-content">
+                            <h3>智慧掃描識別</h3>
+                            <p>VisionKit技術讓資料輸入變得輕鬆快速，大幅減少人工輸入錯誤。</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">💰</span>
+                        <div class="benefit-content">
+                            <h3>提升營運效率</h3>
+                            <p>減少人工錯誤，節省管理成本，讓您專注於業務發展。</p>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="ads-info">
-                    <h4>廣告合作夥伴資訊</h4>
-                    <p>本應用程式與 Google AdSense 合作，為您提供相關的廣告內容。我們承諾所有廣告都經過嚴格審核，確保內容適宜且不影響您的使用體驗。</p>
-                    <small>廣告發布商 ID: pub-9103633528733447</small>
+        <section class="download-section" id="download">
+            <div class="container">
+                <div class="download-content">
+                    <h2>📱 立即下載體驗</h2>
+                    <p>免費下載 TT310 Inventory App<br>專為 iOS 系統設計，支援 iPhone 及 iPad</p>
+                    <div class="cta-buttons">
+                        <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button" target="_blank">
+                            🍎 App Store 免費下載
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tips">
+            <div class="container">
+                <h2>💡 使用小貼士</h2>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <h4>📷 最佳掃描效果</h4>
+                        <p>掃描功能在充足光線下效果最佳，建議在明亮環境中使用掃描功能。</p>
+                    </div>
+                    <div class="tip-item">
+                        <h4>💾 資料安全備份</h4>
+                        <p>建議定期備份庫存資料確保安全，可使用iCloud同步功能。</p>
+                    </div>
+                    <div class="tip-item">
+                        <h4>⚙️ 系統設定優化</h4>
+                        <p>使用前請先了解系統操作流程與權限設定，確保功能正常運作。</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -317,8 +636,37 @@
 
     <footer id="contact">
         <div class="container">
-            <p>&copy; 2025 MyApp. 版權所有。</p>
-            <p>聯絡我們：info@myapp.com</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>📞 需要協助？</h3>
+                    <p><strong>技術支援信箱</strong><br>
+                    <a href="mailto:dwhao84@gmail.com">dwhao84@gmail.com</a></p>
+                    <p><strong>營業時間與服務資訊</strong><br>
+                    請參考官方網站</p>
+                </div>
+                <div class="footer-section">
+                    <h3>📱 應用程式</h3>
+                    <p>TT310 Inventory App<br>
+                    智慧庫存管理解決方案</p>
+                    <p>支援平台：iOS (iPhone & iPad)</p>
+                </div>
+                <div class="footer-section">
+                    <h3>🌟 關於我們</h3>
+                    <p>專注於為企業提供高效的庫存管理解決方案，讓庫存管理更智能化。</p>
+                </div>
+            </div>
+            
+            <div class="ads-info">
+                <h4>廣告合作夥伴資訊</h4>
+                <p>本應用程式與 Google AdSense 合作，為您提供相關的廣告內容。我們承諾所有廣告都經過嚴格審核，確保內容適宜且不影響您的使用體驗。</p>
+                <small>廣告發布商 ID: pub-9103633528733447</small>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 TT310 Inventory App. 版權所有。</p>
+                <p><strong>TT310 Inventory App - 讓庫存管理更智能化</strong></p>
+                <p><em>現在下載，開啟您的高效管理之旅</em></p>
+            </div>
         </div>
     </footer>
 
@@ -337,7 +685,7 @@
             });
         });
 
-        // 動態載入效果
+        // 動畫觀察器
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -352,21 +700,50 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .info-item').forEach(el => {
+        // 為卡片元素添加動畫
+        document.querySelectorAll('.feature-card, .benefit-item, .tip-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
 
-        // CTA 按鈕點擊效果
-        document.querySelector('.cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('感謝您的興趣！請前往 App Store 或 Google Play 商店搜尋 "MyApp" 進行下載。');
+        // 下載按鈕功能
+        function downloadApp() {
+            // 直接打開 TT310 App Store 頁面
+            window.open('https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB', '_blank');
+        }
+
+        // 為所有 CTA 按鈕添加點擊效果（保留給未來使用）
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // 如果是內部連結，使用平滑滾動
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+                // App Store 連結會直接開啟，不需要特殊處理
+            });
+        });
+
+        // 添加滾動效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
         });
     </script>
 
-    <!-- ads.txt 內容作為隱藏元素存在，供搜索引擎和廣告平台識別 -->
+    <!-- ads.txt 內容供搜索引擎識別 -->
     <div style="display: none;" id="ads-txt-content">
         google.com, pub-9103633528733447, DIRECT, f08c47fec0942fa0
     </div>
