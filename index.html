@@ -1,100 +1,4 @@
-.container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 語言切換器 */
-        .language-switcher {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            z-index: 1500;
-            display: flex;
-            gap: 5px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .lang-button {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 20px;
-            background: transparent;
-            color: #666;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lang-button.active {
-            background: #667eea;
-            color: white;
-        }
-
-        .lang-button.active.orange {
-            background: #ff6b35;
-            color: white;
-        }
-
-        .lang-button:hover:not(.active) {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-
-        .lang-button.orange:hover:not(.active) {
-            background: rgba(255, 107, 53, 0.1);
-            color: #ff6b35;
-        }
-
-        /* 隱藏/顯示語言內容 */
-        .lang-content {
-            display: none;
-        }
-
-        .lang-content.active {
-            display: block;
-        }
-
-        .lang-content.inline.active {
-            display: inline;
-        }                    <h2 class="section-title">
-                        <span class="lang-content active" data-lang="zh">🌟 為什麼選擇我們？</span>
-                        <span class="lang-content" data-lang="en">🌟 Why Choose Us?</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        <span class="lang-content active" data-lang="zh">專為工地環境設計，真正了解工程師的需求</span>
-                        <span class="lang-content" data-lang="en">Designed specifically for construction environments, truly understanding engineers' needs</span>
-                    </p>
-                    
-                    <div class="highlight-box orange">
-                        <h3>
-                            <span class="lang-content active" data-lang="zh">🎯 四大核心功能</span>
-                            <span class="lang-content" data-lang="en">🎯 Four Core Functions</span>
-                        </h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                            <div>
-                                <h4 style="margin-bottom: 0.5rem;">
-                                    <span class="lang-content active" data-lang="zh">⚡ 一鍵報告生成</span>
-                                    <span class="lang-content" data-lang="en">⚡ One-Click Report</span>
-                                </h4>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">3                <div class="logo orange">
-                    <span class="lang-content active" data-lang="zh">工地工程師神器</span>
-                    <span class="lang-content" data-lang="en">Construction Engineer Tools</span>
-                </div>
-                <ul class="nav-links orange">
-                    <li><a href="#home">
-                        <span class="lang-content active" data-lang="zh">首頁</span>
-                        <span class="lang-content" data-lang="en">Home</span>
-                    </a></li>
-                    <li><a href="#tools">
-                        <span class="lang-content active" data-lang="zh">工具</span>
-                        <span<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -115,18 +19,29 @@
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+            background: #f5f5f5;
         }
 
-        /* 藍色系主題 (TT310) */
-        .page.theme-blue {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* 頁面容器 */
+        .page {
+            display: none;
             min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* 紫色系主題 (TT310) */
+        #tt310 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
         }
 
         /* 橘色系主題 (工地工程師) */
-        .page.theme-orange {
+        #engineer {
             background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
-            min-height: 100vh;
         }
 
         .container {
@@ -162,14 +77,19 @@
             transition: all 0.3s ease;
         }
 
+        .lang-button.active {
+            background: #8b5cf6;
+            color: white;
+        }
+
         .lang-button.active.orange {
             background: #ff6b35;
             color: white;
         }
 
         .lang-button:hover:not(.active) {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
         }
 
         .lang-button.orange:hover:not(.active) {
@@ -189,6 +109,8 @@
         .lang-content.inline.active {
             display: inline;
         }
+
+        /* 頁面切換器 */
         .page-switcher {
             position: fixed;
             top: 50%;
@@ -211,8 +133,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .switch-button.blue {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .switch-button.purple {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
             color: white;
         }
 
@@ -229,17 +151,6 @@
         .switch-button.active {
             transform: scale(1.2);
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        /* 頁面容器 */
-        .page {
-            display: none;
-            min-height: 100vh;
-            width: 100%;
-        }
-
-        .page.active {
-            display: block;
         }
 
         header {
@@ -268,15 +179,15 @@
             gap: 0.5rem;
         }
 
-        .logo.blue {
-            color: #667eea;
+        .logo.purple {
+            color: #8b5cf6;
         }
 
         .logo.orange {
             color: #ff6b35;
         }
 
-        .logo.blue::before {
+        .logo.purple::before {
             content: "📦";
             font-size: 1.5rem;
         }
@@ -305,9 +216,9 @@
             transform: translateY(-2px);
         }
 
-        .nav-links.blue a:hover {
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
+        .nav-links.purple a:hover {
+            color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
         }
 
         .nav-links.orange a:hover {
@@ -392,12 +303,12 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .cta-button.blue {
+        .cta-button.purple {
             background: linear-gradient(135deg, #ff6b6b, #feca57);
         }
 
         .cta-button.orange {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
         }
 
         .cta-button.secondary {
@@ -467,8 +378,8 @@
             transition: transform 0.3s ease;
         }
 
-        .feature-card.blue::before {
-            background: linear-gradient(90deg, #667eea, #764ba2);
+        .feature-card.purple::before {
+            background: linear-gradient(90deg, #8b5cf6, #6d28d9);
         }
 
         .feature-card.orange::before {
@@ -539,8 +450,8 @@
             transform: translateX(10px);
         }
 
-        .benefit-item.blue:hover {
-            background: rgba(102, 126, 234, 0.05);
+        .benefit-item.purple:hover {
+            background: rgba(139, 92, 246, 0.05);
         }
 
         .benefit-item.orange:hover {
@@ -574,8 +485,8 @@
             overflow: hidden;
         }
 
-        .download-section.blue {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .download-section.purple {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
         }
 
         .download-section.orange {
@@ -640,8 +551,8 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
-        .tip-item.blue {
-            border-left: 4px solid #667eea;
+        .tip-item.purple {
+            border-left: 4px solid #8b5cf6;
         }
 
         .tip-item.orange {
@@ -667,8 +578,8 @@
             margin-bottom: 1rem;
         }
 
-        .footer-section h3.blue {
-            color: #667eea;
+        .footer-section h3.purple {
+            color: #8b5cf6;
         }
 
         .footer-section h3.orange {
@@ -697,11 +608,11 @@
             padding: 1.5rem;
             border-radius: 15px;
             margin-top: 2rem;
-            border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
-        .ads-info.blue {
-            background: rgba(102, 126, 234, 0.1);
+        .ads-info.purple {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
         .ads-info.orange {
@@ -709,8 +620,8 @@
             border: 1px solid rgba(255, 107, 53, 0.2);
         }
 
-        .ads-info h4.blue {
-            color: #667eea;
+        .ads-info h4.purple {
+            color: #8b5cf6;
         }
 
         .ads-info h4.orange {
@@ -901,6 +812,24 @@
             font-weight: 700;
         }
 
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -985,7 +914,7 @@
 
     <!-- 頁面切換按鈕 -->
     <div class="page-switcher">
-        <button class="switch-button blue active" onclick="switchPage('tt310')" title="TT310 庫存管理">
+        <button class="switch-button purple active" onclick="switchPage('tt310')" title="TT310 庫存管理">
             📦
         </button>
         <button class="switch-button orange" onclick="switchPage('engineer')" title="工地工程師神器">
@@ -997,11 +926,11 @@
     <div id="tt310" class="page active">
         <header>
             <nav class="container">
-                <div class="logo blue">
+                <div class="logo purple">
                     <span class="lang-content active" data-lang="zh">TT310 Inventory</span>
                     <span class="lang-content" data-lang="en">TT310 Inventory</span>
                 </div>
-                <ul class="nav-links blue">
+                <ul class="nav-links purple">
                     <li><a href="#home">
                         <span class="lang-content active" data-lang="zh">首頁</span>
                         <span class="lang-content" data-lang="en">Home</span>
@@ -1036,1098 +965,4 @@
                     <div class="hero-content">
                         <h1>TT310 Inventory App</h1>
                         <p class="subtitle">
-                            <span class="lang-content active" data-lang="zh">📦 讓庫存管理變得簡單高效</span>
-                            <span class="lang-content" data-lang="en">📦 Making Inventory Management Simple and Efficient</span>
-                        </p>
-                        <p class="description">
-                            <span class="lang-content active" data-lang="zh">
-                                專業庫存管理助手！專為iOS設備打造，結合先進的VisionKit技術與實用功能，為您的業務提供全方位的庫存控制，讓每項物品都在掌握之中。
-                            </span>
-                            <span class="lang-content" data-lang="en">
-                                Professional inventory management assistant! Built specifically for iOS devices, combining advanced VisionKit technology with practical features to provide comprehensive inventory control for your business, keeping every item under your control.
-                            </span>
-                        </p>
-                        <div class="cta-buttons">
-                            <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button blue" target="_blank">
-                                <span class="lang-content active" data-lang="zh">🍎 App Store 下載</span>
-                                <span class="lang-content" data-lang="en">🍎 Download on App Store</span>
-                            </a>
-                            <a href="#features" class="cta-button secondary">
-                                <span class="lang-content active" data-lang="zh">📋 了解功能</span>
-                                <span class="lang-content" data-lang="en">📋 Learn Features</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="features" id="features">
-                <div class="container">
-                    <h2>
-                        <span class="lang-content active" data-lang="zh">✨ 核心功能特色</span>
-                        <span class="lang-content" data-lang="en">✨ Core Features</span>
-                    </h2>
-                    <p class="features-subtitle">
-                        <span class="lang-content active" data-lang="zh">強大功能組合，打造完美庫存管理體驗</span>
-                        <span class="lang-content" data-lang="en">Powerful feature combination for the perfect inventory management experience</span>
-                    </p>
-                    
-                    <div class="feature-grid">
-                        <div class="feature-card blue">
-                            <span class="feature-icon">📱</span>
-                            <h3>
-                                <span class="lang-content active" data-lang="zh">互動式庫存導覽與物品資訊</span>
-                                <span class="lang-content" data-lang="en">Interactive Inventory Navigation & Item Information</span>
-                            </h3>
-                            <p>
-                                <span class="lang-content active" data-lang="zh">詳細記錄每項物品的規格、位置與狀態資訊，讓您隨時掌握庫存動態，提升管理效率。</span>
-                                <span class="lang-content" data-lang="en">Detailed recording of each item's specifications, location, and status information, enabling you to stay on top of inventory dynamics and improve management efficiency.</span>
-                            </p>
-                        </div>
-                        <div class="feature-card blue">
-                            <span class="feature-icon">🎯</span>
-                            <h3>
-                                <span class="lang-content active" data-lang="zh">個人化管理建議</span>
-                                <span class="lang-content" data-lang="en">Personalized Management Recommendations</span>
-                            </h3>
-                            <p>
-                                <span class="lang-content active" data-lang="zh">根據您的業務需求，提供客製化的庫存管理策略，智慧分析助您做出最佳決策。</span>
-                                <span class="lang-content" data-lang="en">Based on your business needs, provides customized inventory management strategies with intelligent analysis to help you make optimal decisions.</span>
-                            </p>
-                        </div>
-                        <div class="feature-card blue">
-                            <span class="feature-icon">📷</span>
-                            <h3>
-                                <span class="lang-content active" data-lang="zh">VisionKit智慧掃描技術</span>
-                                <span class="lang-content" data-lang="en">VisionKit Smart Scanning Technology</span>
-                            </h3>
-                            <p>
-                                <span class="lang-content active" data-lang="zh">快速掃描條碼、QR碼或文字，自動讀取並建檔物品資料，大幅提升資料輸入效率。</span>
-                                <span class="lang-content" data-lang="en">Quickly scan barcodes, QR codes, or text, automatically reading and filing item data to significantly improve data input efficiency.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="benefits" id="benefits">
-                <div class="container">
-                    <h2>
-                        <span class="lang-content active" data-lang="zh">🌟 為什麼選擇TT310 Inventory App？</span>
-                        <span class="lang-content" data-lang="en">🌟 Why Choose TT310 Inventory App?</span>
-                    </h2>
-                    
-                    <div class="benefits-grid">
-                        <div class="benefit-item blue">
-                            <span class="benefit-icon">📊</span>
-                            <div class="benefit-content">
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">高效庫存控制</span>
-                                    <span class="lang-content" data-lang="en">Efficient Inventory Control</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">從混亂管理到井然有序的完美轉換，讓庫存控制變得輕鬆簡單。</span>
-                                    <span class="lang-content" data-lang="en">Perfect transformation from chaotic management to organized order, making inventory control easy and simple.</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="benefit-item blue">
-                            <span class="benefit-icon">📲</span>
-                            <div class="benefit-content">
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">操作簡單直覺</span>
-                                    <span class="lang-content" data-lang="en">Simple & Intuitive Operation</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">優雅的使用者介面設計，員工都能快速上手使用，無需複雜培訓。</span>
-                                    <span class="lang-content" data-lang="en">Elegant user interface design that allows all employees to quickly get started without complex training.</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="benefit-item blue">
-                            <span class="benefit-icon">🔄</span>
-                            <div class="benefit-content">
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">即時庫存更新</span>
-                                    <span class="lang-content" data-lang="en">Real-time Inventory Updates</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">進出貨、調撥資訊即時同步，確保庫存資料的準確性與即時性。</span>
-                                    <span class="lang-content" data-lang="en">Real-time synchronization of incoming, outgoing, and transfer information ensures accuracy and timeliness of inventory data.</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="benefit-item blue">
-                            <span class="benefit-icon">📱</span>
-                            <div class="benefit-content">
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">iOS原生優化</span>
-                                    <span class="lang-content" data-lang="en">iOS Native Optimization</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">專為iPhone和iPad設計，性能卓越，充分發揮蘋果設備的強大功能。</span>
-                                    <span class="lang-content" data-lang="en">Designed specifically for iPhone and iPad with excellent performance, fully leveraging the powerful capabilities of Apple devices.</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="benefit-item blue">
-                            <span class="benefit-icon">📷</span>
-                            <div class="benefit-content">
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">智慧掃描識別</span>
-                                    <span class="lang-content" data-lang="en">Smart Scanning Recognition</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">VisionKit技術讓資料輸入變得輕鬆快速，大幅減少人工輸入錯誤。</span>
-                                    <span class="lang-content" data-lang="en">VisionKit technology makes data input easy and fast, significantly reducing manual input errors.</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="benefit-item blue">
-                            <span class="benefit-icon">💰</span>
-                            <div class="benefit-content">
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">提升營運效率</span>
-                                    <span class="lang-content" data-lang="en">Improve Operational Efficiency</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">減少人工錯誤，節省管理成本，讓您專注於業務發展。</span>
-                                    <span class="lang-content" data-lang="en">Reduce manual errors, save management costs, and let you focus on business development.</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="download-section blue" id="download">
-                <div class="container">
-                    <div class="download-content">
-                        <h2>
-                            <span class="lang-content active" data-lang="zh">📱 立即下載體驗</span>
-                            <span class="lang-content" data-lang="en">📱 Download Now</span>
-                        </h2>
-                        <p>
-                            <span class="lang-content active" data-lang="zh">免費下載 TT310 Inventory App<br>專為 iOS 系統設計，支援 iPhone 及 iPad</span>
-                            <span class="lang-content" data-lang="en">Download TT310 Inventory App for Free<br>Designed for iOS, supports iPhone and iPad</span>
-                        </p>
-                        <div class="cta-buttons">
-                            <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button blue" target="_blank">
-                                <span class="lang-content active" data-lang="zh">🍎 App Store 免費下載</span>
-                                <span class="lang-content" data-lang="en">🍎 Free Download on App Store</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="tips">
-                <div class="container">
-                    <h2>
-                        <span class="lang-content active" data-lang="zh">💡 使用小貼士</span>
-                        <span class="lang-content" data-lang="en">💡 Usage Tips</span>
-                    </h2>
-                    <div class="tips-list">
-                        <div class="tip-item blue">
-                            <h4>
-                                <span class="lang-content active" data-lang="zh">📷 最佳掃描效果</span>
-                                <span class="lang-content" data-lang="en">📷 Best Scanning Results</span>
-                            </h4>
-                            <p>
-                                <span class="lang-content active" data-lang="zh">掃描功能在充足光線下效果最佳，建議在明亮環境中使用掃描功能。</span>
-                                <span class="lang-content" data-lang="en">Scanning works best in good lighting conditions. We recommend using the scanning feature in bright environments.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="features" id="about-dev">
-                <div class="container">
-                    <h2>
-                        <span class="lang-content active" data-lang="zh">👨‍💻 關於開發者｜About the Developer</span>
-                        <span class="lang-content" data-lang="en">👨‍💻 About the Developer</span>
-                    </h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); margin-bottom: 2rem;">
-                            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                                <span class="lang-content active" data-lang="zh">
-                                    您好，我是 <strong style="color: #667eea;">郝大偉 (Da-Wei Hao)</strong>，一位來自台灣的獨立iOS開發者。我熱衷於打造簡潔、實用且精美的應用程式，解決真實生活中的問題。
-                                </span>
-                                <span class="lang-content" data-lang="en">
-                                    Hi, I'm <strong style="color: #667eea;">Da-Wei Hao</strong>, an independent iOS developer based in Taiwan. I enjoy building simple, useful, and beautifully crafted apps that solve real-life problems.
-                                </span>
-                            </p>
-                            <p style="font-size: 1.1rem; line-height: 1.7; color: #666;">
-                                <span class="lang-content active" data-lang="zh">
-                                    目前我在App Store上架了應用程式，完全使用Swift和UIKit開發，專注於流暢的性能和直覺的使用者體驗。
-                                </span>
-                                <span class="lang-content" data-lang="en">
-                                    Currently, I have an app available on the App Store — built entirely with Swift and UIKit, focusing on smooth performance and intuitive user experience.
-                                </span>
-                            </p>
-                        </div>
-                        
-                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
-                            <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <span class="lang-content active" data-lang="zh">🛠 技術堆疊 | Tech Stack</span>
-                                <span class="lang-content" data-lang="en">🛠 Tech Stack</span>
-                            </h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">📱 iOS Development</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• Swift</li>
-                                        <li>• UIKit</li>
-                                        <li>• Core Data</li>
-                                        <li>• CloudKit</li>
-                                        <li>• SwiftUI <span class="lang-content active" data-lang="zh">(部分功能)</span><span class="lang-content" data-lang="en">(partial features)</span></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🌐 Backend/Automation</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• Firebase</li>
-                                        <li>• Google Sheets API</li>
-                                        <li>• Python</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🚀 CI/CD</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• TestFlight</li>
-                                        <li>• Xcode Cloud</li>
-                                        <li>• GitHub Actions</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="features" id="about-dev">
-                <div class="container">
-                    <h2>👨‍💻 關於開發者｜About the Developer</h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); margin-bottom: 2rem;">
-                            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                                Hi, I'm <strong style="color: #ff6b35;">Da-Wei Hao</strong>, an independent iOS developer based in Taiwan. I enjoy building simple, useful, and beautifully crafted apps that solve real-life problems.
-                            </p>
-                            <p style="font-size: 1.1rem; line-height: 1.7; color: #666;">
-                                Currently, I have an app available on the App Store — built entirely with Swift and UIKit, focusing on smooth performance and intuitive user experience.
-                            </p>
-                        </div>
-                        
-                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
-                            <h3 style="color: #ff6b35; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                🛠 技術堆疊 | Tech Stack
-                            </h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">📱 iOS Development</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• Swift</li>
-                                        <li>• UIKit</li>
-                                        <li>• Core Data</li>
-                                        <li>• CloudKit</li>
-                                        <li>• SwiftUI (部分功能)</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🌐 Backend/Automation</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• Firebase</li>
-                                        <li>• Google Sheets API</li>
-                                        <li>• Python</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🚀 CI/CD</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• TestFlight</li>
-                                        <li>• Xcode Cloud</li>
-                                        <li>• GitHub Actions</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer id="contact">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3 class="blue">👨‍💻 開發者資訊</h3>
-                        <p><strong>Da Wei Hao</strong><br>
-                        iOS Developer</p>
-                        <p><strong>技術支援信箱</strong><br>
-                        <a href="mailto:dwhao84@gmail.com">dwhao84@gmail.com</a></p>
-                        <p><strong>營業時間與服務資訊</strong><br>
-                        請參考官方網站</p>
-                    </div>
-                    <div class="footer-section">
-                        <h3 class="blue">📱 應用程式</h3>
-                        <p>TT310 Inventory App<br>
-                        智慧庫存管理解決方案</p>
-                        <p>支援平台：iOS (iPhone & iPad)</p>
-                    </div>
-                    <div class="footer-section">
-                        <h3 class="blue">🌟 關於開發者</h3>
-                        <p>Da Wei Hao 專注於為企業提供高效的iOS應用解決方案，讓移動設備管理更智能化。</p>
-                    </div>
-                </div>
-                
-                <div class="ads-info blue">
-                    <h4 class="blue">廣告合作夥伴資訊</h4>
-                    <p>本應用程式與 Google AdSense 合作，為您提供相關的廣告內容。我們承諾所有廣告都經過嚴格審核，確保內容適宜且不影響您的使用體驗。</p>
-                    <small>廣告發布商 ID: pub-9103633528733447</small>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; 2025 TT310 Inventory App. 版權所有。</p>
-                    <p><strong>TT310 Inventory App - 讓庫存管理更智能化</strong></p>
-                    <p><em>現在下載，開啟您的高效管理之旅</em></p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- 工地工程師神器頁面 -->
-    <div id="engineer" class="page">
-        <header>
-            <nav class="container">
-                <div class="logo orange">
-                    <span class="lang-content active" data-lang="zh">工地工程師神器</span>
-                    <span class="lang-content" data-lang="en">Construction Engineer Tools</span>
-                </div>
-                <ul class="nav-links orange">
-                    <li><a href="#home">
-                        <span class="lang-content active" data-lang="zh">首頁</span>
-                        <span class="lang-content" data-lang="en">Home</span>
-                    </a></li>
-                    <li><a href="#tools">
-                        <span class="lang-content active" data-lang="zh">工具</span>
-                        <span class="lang-content" data-lang="en">Tools</span>
-                    </a></li>
-                    <li><a href="#features">
-                        <span class="lang-content active" data-lang="zh">功能</span>
-                        <span class="lang-content" data-lang="en">Features</span>
-                    </a></li>
-                    <li><a href="#about-dev">
-                        <span class="lang-content active" data-lang="zh">關於開發者</span>
-                        <span class="lang-content" data-lang="en">About Developer</span>
-                    </a></li>
-                    <li><a href="#contact">
-                        <span class="lang-content active" data-lang="zh">聯絡</span>
-                        <span class="lang-content" data-lang="en">Contact</span>
-                    </a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <main>
-            <section class="hero" id="home">
-                <div class="container">
-                    <div class="hero-content">
-                        <h1>
-                            <span class="lang-content active" data-lang="zh">工地工程師神器</span>
-                            <span class="lang-content" data-lang="en">Construction Engineer Tools</span>
-                        </h1>
-                        <p class="subtitle">
-                            <span class="lang-content active" data-lang="zh">🏗️ 讓工程管理變得簡單高效</span>
-                            <span class="lang-content" data-lang="en">🏗️ Making Construction Management Simple and Efficient</span>
-                        </p>
-                        <p class="description">
-                            <span class="lang-content active" data-lang="zh">
-                                專為工地工程師打造的智慧管理工具！一鍵輸出工程報告，操作簡單不複雜，讓您專注於工程品質而非繁瑣文書作業。
-                            </span>
-                            <span class="lang-content" data-lang="en">
-                                Smart management tools designed for construction engineers! One-click report generation with simple operation, allowing you to focus on construction quality rather than tedious paperwork.
-                            </span>
-                        </p>
-                        
-                        <div class="highlight-box orange">
-                            <h3>
-                                <span class="lang-content active" data-lang="zh">⚡ 革命性功能</span>
-                                <span class="lang-content" data-lang="en">⚡ Revolutionary Features</span>
-                            </h3>
-                            <p>
-                                <span class="lang-content active" data-lang="zh"><strong>工程紀錄 → 一鍵輸出報告 → 3秒完成</strong><br>
-                                操作簡單不複雜，3分鐘上手，效率提升10倍！省去95%文書時間</span>
-                                <span class="lang-content" data-lang="en"><strong>Construction Records → One-Click Report → 3 Seconds Complete</strong><br>
-                                Simple operation, 3 minutes to master, 10x efficiency boost! Save 95% paperwork time</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="tab-container" id="tools">
-                <div class="container">
-                    <h2 class="section-title">
-                        <span class="lang-content active" data-lang="zh">🛠️ 專業工具套件</span>
-                        <span class="lang-content" data-lang="en">🛠️ Professional Tool Suite</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        <span class="lang-content active" data-lang="zh">兩大核心模組，滿足工地工程師所有需求</span>
-                        <span class="lang-content" data-lang="en">Two core modules to meet all construction engineer needs</span>
-                    </p>
-                    
-                    <div class="tab-navigation">
-                        <button class="tab-button active" onclick="switchTab('recording')">
-                            <span class="lang-content active" data-lang="zh">📝 工程紀錄模組</span>
-                            <span class="lang-content" data-lang="en">📝 Construction Records Module</span>
-                        </button>
-                        <button class="tab-button" onclick="switchTab('management')">
-                            <span class="lang-content active" data-lang="zh">📊 工程管理模組</span>
-                            <span class="lang-content" data-lang="en">📊 Construction Management Module</span>
-                        </button>
-                    </div>
-
-                    <!-- 工程紀錄模組 -->
-                    <div id="recording" class="tab-content active">
-                        <div class="tools-grid">
-                            <div class="tool-card">
-                                <span class="tool-icon">⚡</span>
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">一鍵報告生成器</span>
-                                    <span class="lang-content" data-lang="en">One-Click Report Generator</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">革命性核心功能！工程紀錄瞬間轉換為專業報告，告別繁瑣文書作業。</span>
-                                    <span class="lang-content" data-lang="en">Revolutionary core feature! Instantly convert construction records into professional reports, say goodbye to tedious paperwork.</span>
-                                </p>
-                                <ul class="tool-features">
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">工程紀錄自動整理分類</span>
-                                        <span class="lang-content" data-lang="en">Automatic organization and classification of construction records</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">3秒生成完整工程報告</span>
-                                        <span class="lang-content" data-lang="en">Generate complete construction reports in 3 seconds</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">省去95%的文書處理時間</span>
-                                        <span class="lang-content" data-lang="en">Save 95% of paperwork processing time</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">支援Excel一鍵輸出</span>
-                                        <span class="lang-content" data-lang="en">Support one-click Excel export</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">直接分享給監造業主</span>
-                                        <span class="lang-content" data-lang="en">Share directly with supervisors and owners</span>
-                                    </li>
-                                </ul>
-                                <button class="tool-button" onclick="alert('一鍵報告功能啟動！')">
-                                    <span class="lang-content active" data-lang="zh">立即體驗</span>
-                                    <span class="lang-content" data-lang="en">Try Now</span>
-                                </button>
-                            </div>
-
-                            <div class="tool-card">
-                                <span class="tool-icon">📷</span>
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">現場拍照紀錄</span>
-                                    <span class="lang-content" data-lang="en">On-Site Photo Records</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">拍照即紀錄，自動標註時間地點，工程進度一目了然。</span>
-                                    <span class="lang-content" data-lang="en">Photo documentation with automatic time and location tagging, making construction progress clear at a glance.</span>
-                                </p>
-                                <ul class="tool-features">
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">時間戳記防竄改</span>
-                                        <span class="lang-content" data-lang="en">Tamper-proof timestamps</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">自動分類整理相片</span>
-                                        <span class="lang-content" data-lang="en">Automatic photo categorization and organization</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">批次上傳雲端備份</span>
-                                        <span class="lang-content" data-lang="en">Batch cloud backup upload</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">支援語音備註說明</span>
-                                        <span class="lang-content" data-lang="en">Voice annotation support</span>
-                                    </li>
-                                </ul>
-                                <button class="tool-button" onclick="alert('拍照紀錄功能啟動！')">
-                                    <span class="lang-content active" data-lang="zh">開始紀錄</span>
-                                    <span class="lang-content" data-lang="en">Start Recording</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 工程管理模組 -->
-                    <div id="management" class="tab-content">
-                        <div class="tools-grid">
-                            <div class="tool-card">
-                                <span class="tool-icon">📊</span>
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">視覺化進度儀表板</span>
-                                    <span class="lang-content" data-lang="en">Visual Progress Dashboard</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">甘特圖進度視覺化呈現，關鍵路徑智慧分析，工程進度一目了然。</span>
-                                    <span class="lang-content" data-lang="en">Gantt chart visual progress display with intelligent critical path analysis, making construction progress clear at a glance.</span>
-                                </p>
-                                <ul class="tool-features">
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">甘特圖視覺化進度追蹤</span>
-                                        <span class="lang-content" data-lang="en">Gantt chart visual progress tracking</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">關鍵路徑自動分析</span>
-                                        <span class="lang-content" data-lang="en">Automatic critical path analysis</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">工程節點即時更新</span>
-                                        <span class="lang-content" data-lang="en">Real-time construction milestone updates</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">延遲風險提前預警</span>
-                                        <span class="lang-content" data-lang="en">Early warning for delay risks</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">多專案同時管理</span>
-                                        <span class="lang-content" data-lang="en">Multiple project management</span>
-                                    </li>
-                                </ul>
-                                <button class="tool-button" onclick="alert('進度儀表板開啟！')">
-                                    <span class="lang-content active" data-lang="zh">查看進度</span>
-                                    <span class="lang-content" data-lang="en">View Progress</span>
-                                </button>
-                            </div>
-
-                            <div class="tool-card">
-                                <span class="tool-icon">👥</span>
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">團隊協作平台</span>
-                                    <span class="lang-content" data-lang="en">Team Collaboration Platform</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">工班、監造、業主即時溝通，訊息不漏接，協作零距離。</span>
-                                    <span class="lang-content" data-lang="en">Real-time communication between crews, supervisors, and owners with no missed messages and seamless collaboration.</span>
-                                </p>
-                                <ul class="tool-features">
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">即時通訊群組功能</span>
-                                        <span class="lang-content" data-lang="en">Real-time messaging groups</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">任務指派與追蹤</span>
-                                        <span class="lang-content" data-lang="en">Task assignment and tracking</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">檔案共享協作</span>
-                                        <span class="lang-content" data-lang="en">File sharing and collaboration</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">會議排程提醒</span>
-                                        <span class="lang-content" data-lang="en">Meeting scheduling reminders</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">決策紀錄保存</span>
-                                        <span class="lang-content" data-lang="en">Decision record preservation</span>
-                                    </li>
-                                </ul>
-                                <button class="tool-button" onclick="alert('團隊協作啟動！')">
-                                    <span class="lang-content active" data-lang="zh">加入協作</span>
-                                    <span class="lang-content" data-lang="en">Join Collaboration</span>
-                                </button>
-                            </div>
-
-                            <div class="tool-card">
-                                <span class="tool-icon">🔍</span>
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">品質檢驗管理</span>
-                                    <span class="lang-content" data-lang="en">Quality Inspection Management</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">標準化檢驗流程，確保工程品質，通過率大幅提升。</span>
-                                    <span class="lang-content" data-lang="en">Standardized inspection processes to ensure construction quality with significantly improved pass rates.</span>
-                                </p>
-                                <ul class="tool-features">
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">檢驗標準自動提醒</span>
-                                        <span class="lang-content" data-lang="en">Automatic inspection standard reminders</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">缺失追蹤改善</span>
-                                        <span class="lang-content" data-lang="en">Defect tracking and improvement</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">品質報告自動生成</span>
-                                        <span class="lang-content" data-lang="en">Automatic quality report generation</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">歷史數據分析</span>
-                                        <span class="lang-content" data-lang="en">Historical data analysis</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">法規符合性檢查</span>
-                                        <span class="lang-content" data-lang="en">Regulatory compliance checks</span>
-                                    </li>
-                                </ul>
-                                <button class="tool-button" onclick="alert('品質檢驗開始！')">
-                                    <span class="lang-content active" data-lang="zh">開始檢驗</span>
-                                    <span class="lang-content" data-lang="en">Start Inspection</span>
-                                </button>
-                            </div>
-
-                            <div class="tool-card">
-                                <span class="tool-icon">💰</span>
-                                <h3>
-                                    <span class="lang-content active" data-lang="zh">成本控制中心</span>
-                                    <span class="lang-content" data-lang="en">Cost Control Center</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">材料、人工、機具成本即時監控，預算超支提前預警。</span>
-                                    <span class="lang-content" data-lang="en">Real-time monitoring of material, labor, and equipment costs with early warning for budget overruns.</span>
-                                </p>
-                                <ul class="tool-features">
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">即時成本監控</span>
-                                        <span class="lang-content" data-lang="en">Real-time cost monitoring</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">預算執行分析</span>
-                                        <span class="lang-content" data-lang="en">Budget execution analysis</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">材料用量預測</span>
-                                        <span class="lang-content" data-lang="en">Material usage forecasting</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">成本超支預警</span>
-                                        <span class="lang-content" data-lang="en">Cost overrun alerts</span>
-                                    </li>
-                                    <li>
-                                        <span class="lang-content active" data-lang="zh">投資報酬率分析</span>
-                                        <span class="lang-content" data-lang="en">ROI analysis</span>
-                                    </li>
-                                </ul>
-                                <button class="tool-button" onclick="alert('成本控制啟動！')">
-                                    <span class="lang-content active" data-lang="zh">查看成本</span>
-                                    <span class="lang-content" data-lang="en">View Costs</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="tab-container" id="features">
-                <div class="container">
-                    <h2 class="section-title">
-                        <span class="lang-content active" data-lang="zh">🌟 為什麼選擇我們？</span>
-                        <span class="lang-content" data-lang="en">🌟 Why Choose Us?</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        <span class="lang-content active" data-lang="zh">專為工地環境設計，真正了解工程師的需求</span>
-                        <span class="lang-content" data-lang="en">Designed specifically for construction environments, truly understanding engineers' needs</span>
-                    </p>
-                    
-                    <div class="highlight-box orange">
-                        <h3>
-                            <span class="lang-content active" data-lang="zh">🎯 四大核心功能</span>
-                            <span class="lang-content" data-lang="en">🎯 Four Core Functions</span>
-                        </h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                            <div>
-                                <h4 style="margin-bottom: 0.5rem;">
-                                    <span class="lang-content active" data-lang="zh">⚡ 一鍵報告生成</span>
-                                    <span class="lang-content" data-lang="en">⚡ One-Click Report</span>
-                                </h4>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">3秒完成，省去95%文書時間</span>
-                                    <span class="lang-content" data-lang="en">3 seconds complete, save 95% paperwork time</span>
-                                </p>
-                            </div>
-                            <div>
-                                <h4 style="margin-bottom: 0.5rem;">
-                                    <span class="lang-content active" data-lang="zh">📊 甘特圖視覺化</span>
-                                    <span class="lang-content" data-lang="en">📊 Gantt Chart Visual</span>
-                                </h4>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">進度追蹤，關鍵路徑分析</span>
-                                    <span class="lang-content" data-lang="en">Progress tracking, critical path analysis</span>
-                                </p>
-                            </div>
-                            <div>
-                                <h4 style="margin-bottom: 0.5rem;">
-                                    <span class="lang-content active" data-lang="zh">📷 現場拍照紀錄</span>
-                                    <span class="lang-content" data-lang="en">📷 On-Site Photo Records</span>
-                                </h4>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">時間戳記，自動分類整理</span>
-                                    <span class="lang-content" data-lang="en">Timestamps, automatic categorization</span>
-                                </p>
-                            </div>
-                            <div>
-                                <h4 style="margin-bottom: 0.5rem;">
-                                    <span class="lang-content active" data-lang="zh">🏗️ 操作超簡單</span>
-                                    <span class="lang-content" data-lang="en">🏗️ Super Simple Operation</span>
-                                </h4>
-                                <p>
-                                    <span class="lang-content active" data-lang="zh">3分鐘上手，不複雜培訓</span>
-                                    <span class="lang-content" data-lang="en">3 minutes to master, no complex training</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tools-grid" style="margin-top: 3rem;">
-                        <div class="tool-card">
-                            <span class="tool-icon">📱</span>
-                            <h3>
-                                <span class="lang-content active" data-lang="zh">專為iOS設計</span>
-                                <span class="lang-content" data-lang="en">Designed for iOS</span>
-                            </h3>
-                            <p>
-                                <span class="lang-content active" data-lang="zh">專為iPhone和iPad優化，充分發揮蘋果設備的強大功能，穩定可靠。</span>
-                                <span class="lang-content" data-lang="en">Optimized specifically for iPhone and iPad, fully leveraging the powerful features of Apple devices with stability and reliability.</span>
-                            </p>
-                        </div>
-                        <div class="tool-card">
-                            <span class="tool-icon">☁️</span>
-                            <h3>
-                                <span class="lang-content active" data-lang="zh">雲端同步備份</span>
-                                <span class="lang-content" data-lang="en">Cloud Sync Backup</span>
-                            </h3>
-                            <p>
-                                <span class="lang-content active" data-lang="zh">資料永不遺失，多設備同步，隨時隨地查看工程紀錄。</span>
-                                <span class="lang-content" data-lang="en">Data never lost, multi-device sync, view construction records anytime, anywhere.</span>
-                            </p>
-                        </div>
-                        <div class="tool-card">
-                            <span class="tool-icon">🔒</span>
-                            <h3>
-                                <span class="lang-content active" data-lang="zh">資料安全保障</span>
-                                <span class="lang-content" data-lang="en">Data Security Guarantee</span>
-                            </h3>
-                            <p>
-                                <span class="lang-content active" data-lang="zh">銀行級加密保護，工程機密安全無虞，符合資安標準。</span>
-                                <span class="lang-content" data-lang="en">Bank-level encryption protection, construction confidentiality security guaranteed, meeting security standards.</span>
-                            </p>
-                        </div>
-                    </div>
-            <section class="features" id="about-dev">
-                <div class="container">
-                    <h2>
-                        <span class="lang-content active" data-lang="zh">👨‍💻 關於開發者｜About the Developer</span>
-                        <span class="lang-content" data-lang="en">👨‍💻 About the Developer</span>
-                    </h2>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); margin-bottom: 2rem;">
-                            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                                <span class="lang-content active" data-lang="zh">
-                                    您好，我是 <strong style="color: #ff6b35;">郝大偉 (Da-Wei Hao)</strong>，一位來自台灣的獨立iOS開發者。我熱衷於打造簡潔、實用且精美的應用程式，解決真實生活中的問題。
-                                </span>
-                                <span class="lang-content" data-lang="en">
-                                    Hi, I'm <strong style="color: #ff6b35;">Da-Wei Hao</strong>, an independent iOS developer based in Taiwan. I enjoy building simple, useful, and beautifully crafted apps that solve real-life problems.
-                                </span>
-                            </p>
-                            <p style="font-size: 1.1rem; line-height: 1.7; color: #666;">
-                                <span class="lang-content active" data-lang="zh">
-                                    目前我在App Store上架了應用程式，完全使用Swift和UIKit開發，專注於流暢的性能和直覺的使用者體驗。
-                                </span>
-                                <span class="lang-content" data-lang="en">
-                                    Currently, I have an app available on the App Store — built entirely with Swift and UIKit, focusing on smooth performance and intuitive user experience.
-                                </span>
-                            </p>
-                        </div>
-                        
-                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
-                            <h3 style="color: #ff6b35; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <span class="lang-content active" data-lang="zh">🛠 技術堆疊 | Tech Stack</span>
-                                <span class="lang-content" data-lang="en">🛠 Tech Stack</span>
-                            </h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">📱 iOS Development</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• Swift</li>
-                                        <li>• UIKit</li>
-                                        <li>• Core Data</li>
-                                        <li>• CloudKit</li>
-                                        <li>• SwiftUI <span class="lang-content active" data-lang="zh">(部分功能)</span><span class="lang-content" data-lang="en">(partial features)</span></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🌐 Backend/Automation</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• Firebase</li>
-                                        <li>• Google Sheets API</li>
-                                        <li>• Python</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🚀 CI/CD</h4>
-                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
-                                        <li>• TestFlight</li>
-                                        <li>• Xcode Cloud</li>
-                                        <li>• GitHub Actions</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer id="contact">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3 class="orange">
-                            <span class="lang-content active" data-lang="zh">👨‍💻 開發者資訊</span>
-                            <span class="lang-content" data-lang="en">👨‍💻 Developer Info</span>
-                        </h3>
-                        <p><strong>Da Wei Hao</strong><br>
-                        iOS Developer</p>
-                        <p><strong>
-                            <span class="lang-content active" data-lang="zh">技術支援信箱</span>
-                            <span class="lang-content" data-lang="en">Technical Support</span>
-                        </strong><br>
-                        <a href="mailto:dwhao84@gmail.com">dwhao84@gmail.com</a></p>
-                    </div>
-                    <div class="footer-section">
-                        <h3 class="orange">
-                            <span class="lang-content active" data-lang="zh">🛠️ 工程師神器</span>
-                            <span class="lang-content" data-lang="en">🛠️ Engineer Tools</span>
-                        </h3>
-                        <p>
-                            <span class="lang-content active" data-lang="zh">工地工程師專用管理工具<br>智慧化工程解決方案</span>
-                            <span class="lang-content" data-lang="en">Construction Engineer Management Tools<br>Smart Construction Solutions</span>
-                        </p>
-                        <p>
-                            <span class="lang-content active" data-lang="zh">支援平台：</span>
-                            <span class="lang-content" data-lang="en">Platform: </span>
-                            iOS
-                        </p>
-                    </div>
-                    <div class="footer-section">
-                        <h3 class="orange">
-                            <span class="lang-content active" data-lang="zh">🌟 關於開發者</span>
-                            <span class="lang-content" data-lang="en">🌟 About Developer</span>
-                        </h3>
-                        <p>
-                            <span class="lang-content active" data-lang="zh">Da Wei Hao 專注於為工地工程師提供高效的iOS工程管理解決方案，讓工程管理更智能化。</span>
-                            <span class="lang-content" data-lang="en">Da Wei Hao focuses on providing efficient iOS construction management solutions for construction engineers, making construction management more intelligent.</span>
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="ads-info orange">
-                    <h4 class="orange">
-                        <span class="lang-content active" data-lang="zh">開發者技術支援</span>
-                        <span class="lang-content" data-lang="en">Developer Technical Support</span>
-                    </h4>
-                    <p>
-                        <span class="lang-content active" data-lang="zh">Da Wei Hao 提供專業的iOS應用技術支援服務，協助您快速上手並解決使用過程中的任何問題。專業開發者隨時為您服務。</span>
-                        <span class="lang-content" data-lang="en">Da Wei Hao provides professional iOS application technical support services to help you get started quickly and solve any issues during use. Professional developer ready to serve you.</span>
-                    </p>
-                    <small>
-                        <span class="lang-content active" data-lang="zh">技術支援信箱：</span>
-                        <span class="lang-content" data-lang="en">Technical Support: </span>
-                        dwhao84@gmail.com
-                    </small>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Da Wei Hao - iOS Developer. 
-                        <span class="lang-content active" data-lang="zh">版權所有。</span>
-                        <span class="lang-content" data-lang="en">All rights reserved.</span>
-                    </p>
-                    <p><strong>
-                        <span class="lang-content active" data-lang="zh">讓工程管理更智能化，讓工程師更專業</span>
-                        <span class="lang-content" data-lang="en">Making Construction Management Smarter, Making Engineers More Professional</span>
-                    </strong></p>
-                    <p><em>
-                        <span class="lang-content active" data-lang="zh">聯絡我們：dwhao84@gmail.com</span>
-                        <span class="lang-content" data-lang="en">Contact us: dwhao84@gmail.com</span>
-                    </em></p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        // 語言切換功能
-        function switchLanguage(lang) {
-            // 隱藏所有語言內容
-            const allLangContent = document.querySelectorAll('.lang-content');
-            allLangContent.forEach(content => {
-                content.classList.remove('active');
-            });
-
-            // 顯示選中語言的內容
-            const selectedLangContent = document.querySelectorAll(`[data-lang="${lang}"]`);
-            selectedLangContent.forEach(content => {
-                content.classList.add('active');
-            });
-
-            // 更新語言按鈕狀態
-            const allLangButtons = document.querySelectorAll('.lang-button');
-            allLangButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // 根據當前頁面設置按鈕顏色
-            const currentPage = document.querySelector('.page.active').id;
-            const activeButton = document.querySelector(`[data-lang="${lang}"].lang-button`);
-            activeButton.classList.add('active');
-            
-            if (currentPage === 'engineer') {
-                activeButton.classList.add('orange');
-            } else {
-                activeButton.classList.remove('orange');
-            }
-
-            // 儲存語言偏好
-            localStorage.setItem('preferredLanguage', lang);
-        }
-
-        // 更新語言切換器顏色
-        function updateLanguageSwitcherColor(pageId) {
-            const langButtons = document.querySelectorAll('.lang-button');
-            langButtons.forEach(button => {
-                if (pageId === 'engineer') {
-                    button.classList.add('orange');
-                } else {
-                    button.classList.remove('orange');
-                }
-            });
-        }
-
-        // 頁面切換功能
-        function switchPage(pageId) {
-            // 隱藏所有頁面
-            const allPages = document.querySelectorAll('.page');
-            allPages.forEach(page => {
-                page.classList.remove('active');
-            });
-
-            // 移除所有切換按鈕的 active 狀態
-            const allSwitchButtons = document.querySelectorAll('.switch-button');
-            allSwitchButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            // 顯示選中的頁面
-            const targetPage = document.getElementById(pageId);
-            targetPage.classList.add('active');
-
-            // 添加對應按鈕的 active 狀態
-            if (pageId === 'tt310') {
-                document.querySelector('.switch-button.blue').classList.add('active');
-            } else if (pageId === 'engineer') {
-                document.querySelector('.switch-button.orange').classList.add('active');
-            }
-
-            // 更新語言切換器顏色
-            updateLanguageSwitcherColor(pageId);
-
-            // 滾動到頂部
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // 標籤切換功能（工程師神器頁面專用）
-        function switchTab(tabName) {
-            // 隱藏所有標籤內容
-            const allTabs = document.querySelectorAll('.tab-content');
-            allTabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // 移除所有按鈕的 active 狀態
-            const allButtons = document.querySelectorAll('.tab-button');
-            allButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            // 顯示選中的標籤內容
-            document.getElementById(tabName).classList.add('active');
-
-            // 添加選中按鈕的 active 狀態
-            event.target.classList.add('active');
-        }
-
-        // 平滑滾動效果
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // 動畫觀察器
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // 為卡片元素添加動畫
-        document.querySelectorAll('.feature-card, .benefit-item, .tip-item, .tool-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-
-        // 添加滾動效果
-        window.addEventListener('scroll', () => {
-            const headers = document.querySelectorAll('header');
-            headers.forEach(header => {
-                if (window.scrollY > 100) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
-                }
-            });
-        });
-
-        // 頁面載入時初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 確保預設顯示 TT310 頁面
-            switchPage('tt310');
-            
-            // 載入語言偏好
-            const savedLang = localStorage.getItem('preferredLanguage') || 'zh';
-            switchLanguage(savedLang);
-            
-            // 確保語言切換器顏色正確
-            updateLanguageSwitcherColor('tt310');
-        });
-    </script>
-
-    <!-- ads.txt 內容供搜索引擎識別 -->
-    <div style="display: none;" id="ads-txt-content">
-        google.com, pub-9103633528733447, DIRECT, f08c47fec0942fa0
-    </div>
-</body>
-</html>
+                            <span class="lang-content active" data-lang="zh">📦
