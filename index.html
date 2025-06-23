@@ -1,4 +1,68 @@
-<h2 class="section-title">
+.container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 語言切換器 */
+        .language-switcher {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1500;
+            display: flex;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .lang-button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            background: transparent;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .lang-button.active.orange {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .lang-button:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .lang-button.orange:hover:not(.active) {
+            background: rgba(255, 107, 53, 0.1);
+            color: #ff6b35;
+        }
+
+        /* 隱藏/顯示語言內容 */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        .lang-content.inline.active {
+            display: inline;
+        }                    <h2 class="section-title">
                         <span class="lang-content active" data-lang="zh">🌟 為什麼選擇我們？</span>
                         <span class="lang-content" data-lang="en">🌟 Why Choose Us?</span>
                     </h2>
@@ -49,16 +113,20 @@
             line-height: 1.6;
             color: #1d1d1f;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         /* 藍色系主題 (TT310) */
-        .theme-blue {
+        .page.theme-blue {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
 
         /* 橘色系主題 (工地工程師) */
-        .theme-orange {
+        .page.theme-orange {
             background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            min-height: 100vh;
         }
 
         .container {
@@ -94,14 +162,19 @@
             transition: all 0.3s ease;
         }
 
-        .lang-button.active {
-            background: #667eea;
+        .lang-button.active.orange {
+            background: #ff6b35;
             color: white;
         }
 
         .lang-button:hover:not(.active) {
             background: rgba(102, 126, 234, 0.1);
             color: #667eea;
+        }
+
+        .lang-button.orange:hover:not(.active) {
+            background: rgba(255, 107, 53, 0.1);
+            color: #ff6b35;
         }
 
         /* 隱藏/顯示語言內容 */
@@ -162,6 +235,7 @@
         .page {
             display: none;
             min-height: 100vh;
+            width: 100%;
         }
 
         .page.active {
@@ -889,6 +963,16 @@
                 height: 50px;
                 font-size: 1.2rem;
             }
+
+            .language-switcher {
+                top: 90px;
+                right: 10px;
+            }
+
+            .lang-button {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -910,7 +994,7 @@
     </div>
 
     <!-- TT310 頁面 -->
-    <div id="tt310" class="page theme-blue active">
+    <div id="tt310" class="page active">
         <header>
             <nav class="container">
                 <div class="logo blue">
@@ -1313,7 +1397,7 @@
     </div>
 
     <!-- 工地工程師神器頁面 -->
-    <div id="engineer" class="page theme-orange">
+    <div id="engineer" class="page">
         <header>
             <nav class="container">
                 <div class="logo orange">
@@ -1735,6 +1819,67 @@
                             </p>
                         </div>
                     </div>
+            <section class="features" id="about-dev">
+                <div class="container">
+                    <h2>
+                        <span class="lang-content active" data-lang="zh">👨‍💻 關於開發者｜About the Developer</span>
+                        <span class="lang-content" data-lang="en">👨‍💻 About the Developer</span>
+                    </h2>
+                    <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); margin-bottom: 2rem;">
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                                <span class="lang-content active" data-lang="zh">
+                                    您好，我是 <strong style="color: #ff6b35;">郝大偉 (Da-Wei Hao)</strong>，一位來自台灣的獨立iOS開發者。我熱衷於打造簡潔、實用且精美的應用程式，解決真實生活中的問題。
+                                </span>
+                                <span class="lang-content" data-lang="en">
+                                    Hi, I'm <strong style="color: #ff6b35;">Da-Wei Hao</strong>, an independent iOS developer based in Taiwan. I enjoy building simple, useful, and beautifully crafted apps that solve real-life problems.
+                                </span>
+                            </p>
+                            <p style="font-size: 1.1rem; line-height: 1.7; color: #666;">
+                                <span class="lang-content active" data-lang="zh">
+                                    目前我在App Store上架了應用程式，完全使用Swift和UIKit開發，專注於流暢的性能和直覺的使用者體驗。
+                                </span>
+                                <span class="lang-content" data-lang="en">
+                                    Currently, I have an app available on the App Store — built entirely with Swift and UIKit, focusing on smooth performance and intuitive user experience.
+                                </span>
+                            </p>
+                        </div>
+                        
+                        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                            <h3 style="color: #ff6b35; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span class="lang-content active" data-lang="zh">🛠 技術堆疊 | Tech Stack</span>
+                                <span class="lang-content" data-lang="en">🛠 Tech Stack</span>
+                            </h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                <div>
+                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">📱 iOS Development</h4>
+                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
+                                        <li>• Swift</li>
+                                        <li>• UIKit</li>
+                                        <li>• Core Data</li>
+                                        <li>• CloudKit</li>
+                                        <li>• SwiftUI <span class="lang-content active" data-lang="zh">(部分功能)</span><span class="lang-content" data-lang="en">(partial features)</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🌐 Backend/Automation</h4>
+                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
+                                        <li>• Firebase</li>
+                                        <li>• Google Sheets API</li>
+                                        <li>• Python</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 style="color: #1d1d1f; margin-bottom: 0.8rem; font-size: 1.1rem;">🚀 CI/CD</h4>
+                                    <ul style="list-style: none; color: #666; line-height: 1.8;">
+                                        <li>• TestFlight</li>
+                                        <li>• Xcode Cloud</li>
+                                        <li>• GitHub Actions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -1743,34 +1888,74 @@
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h3 class="orange">👨‍💻 開發者資訊</h3>
+                        <h3 class="orange">
+                            <span class="lang-content active" data-lang="zh">👨‍💻 開發者資訊</span>
+                            <span class="lang-content" data-lang="en">👨‍💻 Developer Info</span>
+                        </h3>
                         <p><strong>Da Wei Hao</strong><br>
                         iOS Developer</p>
-                        <p><strong>技術支援信箱</strong><br>
+                        <p><strong>
+                            <span class="lang-content active" data-lang="zh">技術支援信箱</span>
+                            <span class="lang-content" data-lang="en">Technical Support</span>
+                        </strong><br>
                         <a href="mailto:dwhao84@gmail.com">dwhao84@gmail.com</a></p>
                     </div>
                     <div class="footer-section">
-                        <h3 class="orange">🛠️ 工程師神器</h3>
-                        <p>工地工程師專用管理工具<br>
-                        智慧化工程解決方案</p>
-                        <p>支援平台：iOS</p>
+                        <h3 class="orange">
+                            <span class="lang-content active" data-lang="zh">🛠️ 工程師神器</span>
+                            <span class="lang-content" data-lang="en">🛠️ Engineer Tools</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content active" data-lang="zh">工地工程師專用管理工具<br>智慧化工程解決方案</span>
+                            <span class="lang-content" data-lang="en">Construction Engineer Management Tools<br>Smart Construction Solutions</span>
+                        </p>
+                        <p>
+                            <span class="lang-content active" data-lang="zh">支援平台：</span>
+                            <span class="lang-content" data-lang="en">Platform: </span>
+                            iOS
+                        </p>
                     </div>
                     <div class="footer-section">
-                        <h3 class="orange">🌟 關於開發者</h3>
-                        <p>Da Wei Hao 專注於為工地工程師提供高效的iOS工程管理解決方案，讓工程管理更智能化。</p>
+                        <h3 class="orange">
+                            <span class="lang-content active" data-lang="zh">🌟 關於開發者</span>
+                            <span class="lang-content" data-lang="en">🌟 About Developer</span>
+                        </h3>
+                        <p>
+                            <span class="lang-content active" data-lang="zh">Da Wei Hao 專注於為工地工程師提供高效的iOS工程管理解決方案，讓工程管理更智能化。</span>
+                            <span class="lang-content" data-lang="en">Da Wei Hao focuses on providing efficient iOS construction management solutions for construction engineers, making construction management more intelligent.</span>
+                        </p>
                     </div>
                 </div>
                 
                 <div class="ads-info orange">
-                    <h4 class="orange">開發者技術支援</h4>
-                    <p>Da Wei Hao 提供專業的iOS應用技術支援服務，協助您快速上手並解決使用過程中的任何問題。專業開發者隨時為您服務。</p>
-                    <small>技術支援信箱：dwhao84@gmail.com</small>
+                    <h4 class="orange">
+                        <span class="lang-content active" data-lang="zh">開發者技術支援</span>
+                        <span class="lang-content" data-lang="en">Developer Technical Support</span>
+                    </h4>
+                    <p>
+                        <span class="lang-content active" data-lang="zh">Da Wei Hao 提供專業的iOS應用技術支援服務，協助您快速上手並解決使用過程中的任何問題。專業開發者隨時為您服務。</span>
+                        <span class="lang-content" data-lang="en">Da Wei Hao provides professional iOS application technical support services to help you get started quickly and solve any issues during use. Professional developer ready to serve you.</span>
+                    </p>
+                    <small>
+                        <span class="lang-content active" data-lang="zh">技術支援信箱：</span>
+                        <span class="lang-content" data-lang="en">Technical Support: </span>
+                        dwhao84@gmail.com
+                    </small>
                 </div>
                 
                 <div class="footer-bottom">
-                    <p>&copy; 2025 Da Wei Hao - iOS Developer. 版權所有.</p>
-                    <p><strong>讓工程管理更智能化，讓工程師更專業</strong></p>
-                    <p><em>聯絡我們：dwhao84@gmail.com</em></p>
+                    <p>&copy; 2025 Da Wei Hao - iOS Developer. 
+                        <span class="lang-content active" data-lang="zh">版權所有。</span>
+                        <span class="lang-content" data-lang="en">All rights reserved.</span>
+                    </p>
+                    <p><strong>
+                        <span class="lang-content active" data-lang="zh">讓工程管理更智能化，讓工程師更專業</span>
+                        <span class="lang-content" data-lang="en">Making Construction Management Smarter, Making Engineers More Professional</span>
+                    </strong></p>
+                    <p><em>
+                        <span class="lang-content active" data-lang="zh">聯絡我們：dwhao84@gmail.com</span>
+                        <span class="lang-content" data-lang="en">Contact us: dwhao84@gmail.com</span>
+                    </em></p>
                 </div>
             </div>
         </footer>
@@ -1796,10 +1981,32 @@
             allLangButtons.forEach(button => {
                 button.classList.remove('active');
             });
-            document.querySelector(`[data-lang="${lang}"].lang-button`).classList.add('active');
+            
+            // 根據當前頁面設置按鈕顏色
+            const currentPage = document.querySelector('.page.active').id;
+            const activeButton = document.querySelector(`[data-lang="${lang}"].lang-button`);
+            activeButton.classList.add('active');
+            
+            if (currentPage === 'engineer') {
+                activeButton.classList.add('orange');
+            } else {
+                activeButton.classList.remove('orange');
+            }
 
-            // 儲存語言偏好（可選）
+            // 儲存語言偏好
             localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // 更新語言切換器顏色
+        function updateLanguageSwitcherColor(pageId) {
+            const langButtons = document.querySelectorAll('.lang-button');
+            langButtons.forEach(button => {
+                if (pageId === 'engineer') {
+                    button.classList.add('orange');
+                } else {
+                    button.classList.remove('orange');
+                }
+            });
         }
 
         // 頁面切換功能
@@ -1817,16 +2024,18 @@
             });
 
             // 顯示選中的頁面
-            document.getElementById(pageId).classList.add('active');
+            const targetPage = document.getElementById(pageId);
+            targetPage.classList.add('active');
 
             // 添加對應按鈕的 active 狀態
             if (pageId === 'tt310') {
                 document.querySelector('.switch-button.blue').classList.add('active');
-                document.body.className = '';
             } else if (pageId === 'engineer') {
                 document.querySelector('.switch-button.orange').classList.add('active');
-                document.body.className = '';
             }
+
+            // 更新語言切換器顏色
+            updateLanguageSwitcherColor(pageId);
 
             // 滾動到頂部
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1910,6 +2119,9 @@
             // 載入語言偏好
             const savedLang = localStorage.getItem('preferredLanguage') || 'zh';
             switchLanguage(savedLang);
+            
+            // 確保語言切換器顏色正確
+            updateLanguageSwitcherColor('tt310');
         });
     </script>
 
