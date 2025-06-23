@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TT310 Inventory App - 智慧庫存管理解決方案</title>
-    <meta name="description" content="TT310 Inventory App 是專為iOS設備打造的智慧庫存管理助手，結合VisionKit技術，提供全方位庫存控制解決方案。">
+    <title>專業工具集 - TT310 & 工地工程師神器</title>
+    <meta name="description" content="專業工具集合，包含TT310庫存管理和工地工程師神器">
     <style>
         * {
             margin: 0;
@@ -16,14 +16,76 @@
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #1d1d1f;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow-x: hidden;
+        }
+
+        /* 藍色系主題 (TT310) */
+        .theme-blue {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* 橘色系主題 (工地工程師) */
+        .theme-orange {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* 頁面切換器 */
+        .page-switcher {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .switch-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .switch-button.blue {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .switch-button.orange {
+            background: linear-gradient(135deg, #ff9a56, #ff6b35);
+            color: white;
+        }
+
+        .switch-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .switch-button.active {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        /* 頁面容器 */
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
         }
 
         header {
@@ -47,14 +109,26 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #667eea;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .logo::before {
+        .logo.blue {
+            color: #667eea;
+        }
+
+        .logo.orange {
+            color: #ff6b35;
+        }
+
+        .logo.blue::before {
             content: "📦";
+            font-size: 1.5rem;
+        }
+
+        .logo.orange::before {
+            content: "🏗️";
             font-size: 1.5rem;
         }
 
@@ -71,13 +145,20 @@
             transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 25px;
-            position: relative;
         }
 
         .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links.blue a:hover {
             color: #667eea;
             background: rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
+        }
+
+        .nav-links.orange a:hover {
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
         }
 
         main {
@@ -147,7 +228,6 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
             color: white;
             padding: 1.2rem 2.5rem;
             text-decoration: none;
@@ -156,6 +236,14 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.blue {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+        }
+
+        .cta-button.orange {
+            background: linear-gradient(135deg, #667eea, #764ba2);
         }
 
         .cta-button.secondary {
@@ -221,9 +309,16 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
             transform: scaleX(0);
             transition: transform 0.3s ease;
+        }
+
+        .feature-card.blue::before {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .feature-card.orange::before {
+            background: linear-gradient(90deg, #ff9a56, #ff6b35);
         }
 
         .feature-card:hover::before {
@@ -287,8 +382,15 @@
         }
 
         .benefit-item:hover {
-            background: rgba(102, 126, 234, 0.05);
             transform: translateX(10px);
+        }
+
+        .benefit-item.blue:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .benefit-item.orange:hover {
+            background: rgba(255, 107, 53, 0.05);
         }
 
         .benefit-icon {
@@ -309,7 +411,6 @@
         }
 
         .download-section {
-            background: linear-gradient(135deg, #667eea, #764ba2);
             padding: 6rem 0;
             margin: 2rem 0;
             border-radius: 30px;
@@ -317,6 +418,14 @@
             color: white;
             position: relative;
             overflow: hidden;
+        }
+
+        .download-section.blue {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .download-section.orange {
+            background: linear-gradient(135deg, #ff9a56, #ff6b35);
         }
 
         .download-section::before {
@@ -374,8 +483,15 @@
             background: white;
             padding: 1.5rem;
             border-radius: 15px;
-            border-left: 4px solid #667eea;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .tip-item.blue {
+            border-left: 4px solid #667eea;
+        }
+
+        .tip-item.orange {
+            border-left: 4px solid #ff6b35;
         }
 
         footer {
@@ -395,7 +511,14 @@
         .footer-section h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
+        }
+
+        .footer-section h3.blue {
             color: #667eea;
+        }
+
+        .footer-section h3.orange {
+            color: #ff9a56;
         }
 
         .footer-section p,
@@ -417,16 +540,211 @@
         }
 
         .ads-info {
-            background: rgba(102, 126, 234, 0.1);
             padding: 1.5rem;
             border-radius: 15px;
             margin-top: 2rem;
             border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
-        .ads-info h4 {
+        .ads-info.blue {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .ads-info.orange {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .ads-info h4.blue {
             color: #667eea;
-            margin-bottom: 0.5rem;
+        }
+
+        .ads-info h4.orange {
+            color: #ff6b35;
+        }
+
+        /* 工程師神器專用樣式 */
+        .tab-container {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 2rem 0 6rem;
+            margin: 2rem 0;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9a56, #ff6b35);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .tab-button.active::before {
+            left: 0;
+        }
+
+        .tab-button.active {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .tab-button:hover:not(.active) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9a56, #ff6b35);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .tool-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .tool-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            font-weight: 600;
+        }
+
+        .tool-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .tool-features li {
+            padding: 0.5rem 0;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tool-features li::before {
+            content: "✓";
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .tool-button {
+            background: linear-gradient(135deg, #ff9a56, #ff6b35);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .highlight-box {
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .highlight-box.orange {
+            background: linear-gradient(135deg, #ff6b35, #ff9a56);
+        }
+
+        .highlight-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         @keyframes fadeInUp {
@@ -438,6 +756,11 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes float {
@@ -461,7 +784,8 @@
             }
             
             .feature-grid,
-            .benefits-grid {
+            .benefits-grid,
+            .tools-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -475,184 +799,483 @@
             .download-section h2 {
                 font-size: 2rem;
             }
+
+            .page-switcher {
+                right: 10px;
+            }
+
+            .switch-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">TT310 Inventory</div>
-            <ul class="nav-links">
-                <li><a href="#home">首頁</a></li>
-                <li><a href="#features">功能</a></li>
-                <li><a href="#benefits">優勢</a></li>
-                <li><a href="#download">下載</a></li>
-                <li><a href="#contact">聯絡</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- 頁面切換按鈕 -->
+    <div class="page-switcher">
+        <button class="switch-button blue active" onclick="switchPage('tt310')" title="TT310 庫存管理">
+            📦
+        </button>
+        <button class="switch-button orange" onclick="switchPage('engineer')" title="工地工程師神器">
+            🏗️
+        </button>
+    </div>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>TT310 Inventory App</h1>
-                    <p class="subtitle">📦 讓庫存管理變得簡單高效</p>
-                    <p class="description">
-                        專業庫存管理助手！專為iOS設備打造，結合先進的VisionKit技術與實用功能，為您的業務提供全方位的庫存控制，讓每項物品都在掌握之中。
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button" target="_blank">
-                            🍎 App Store 下載
-                        </a>
-                        <a href="#features" class="cta-button secondary">
-                            📋 了解功能
-                        </a>
+    <!-- TT310 頁面 -->
+    <div id="tt310" class="page theme-blue active">
+        <header>
+            <nav class="container">
+                <div class="logo blue">TT310 Inventory</div>
+                <ul class="nav-links blue">
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#features">功能</a></li>
+                    <li><a href="#benefits">優勢</a></li>
+                    <li><a href="#download">下載</a></li>
+                    <li><a href="#contact">聯絡</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" id="home">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>TT310 Inventory App</h1>
+                        <p class="subtitle">📦 讓庫存管理變得簡單高效</p>
+                        <p class="description">
+                            專業庫存管理助手！專為iOS設備打造，結合先進的VisionKit技術與實用功能，為您的業務提供全方位的庫存控制，讓每項物品都在掌握之中。
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button blue" target="_blank">
+                                🍎 App Store 下載
+                            </a>
+                            <a href="#features" class="cta-button secondary">
+                                📋 了解功能
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="features" id="features">
+            <section class="features" id="features">
+                <div class="container">
+                    <h2>✨ 核心功能特色</h2>
+                    <p class="features-subtitle">強大功能組合，打造完美庫存管理體驗</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card blue">
+                            <span class="feature-icon">📱</span>
+                            <h3>互動式庫存導覽與物品資訊</h3>
+                            <p>詳細記錄每項物品的規格、位置與狀態資訊，讓您隨時掌握庫存動態，提升管理效率。</p>
+                        </div>
+                        <div class="feature-card blue">
+                            <span class="feature-icon">🎯</span>
+                            <h3>個人化管理建議</h3>
+                            <p>根據您的業務需求，提供客製化的庫存管理策略，智慧分析助您做出最佳決策。</p>
+                        </div>
+                        <div class="feature-card blue">
+                            <span class="feature-icon">📷</span>
+                            <h3>VisionKit智慧掃描技術</h3>
+                            <p>快速掃描條碼、QR碼或文字，自動讀取並建檔物品資料，大幅提升資料輸入效率。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="benefits" id="benefits">
+                <div class="container">
+                    <h2>🌟 為什麼選擇TT310 Inventory App？</h2>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-item blue">
+                            <span class="benefit-icon">📊</span>
+                            <div class="benefit-content">
+                                <h3>高效庫存控制</h3>
+                                <p>從混亂管理到井然有序的完美轉換，讓庫存控制變得輕鬆簡單。</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item blue">
+                            <span class="benefit-icon">📲</span>
+                            <div class="benefit-content">
+                                <h3>操作簡單直覺</h3>
+                                <p>優雅的使用者介面設計，員工都能快速上手使用，無需複雜培訓。</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item blue">
+                            <span class="benefit-icon">🔄</span>
+                            <div class="benefit-content">
+                                <h3>即時庫存更新</h3>
+                                <p>進出貨、調撥資訊即時同步，確保庫存資料的準確性與即時性。</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item blue">
+                            <span class="benefit-icon">📱</span>
+                            <div class="benefit-content">
+                                <h3>iOS原生優化</h3>
+                                <p>專為iPhone和iPad設計，性能卓越，充分發揮蘋果設備的強大功能。</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item blue">
+                            <span class="benefit-icon">📷</span>
+                            <div class="benefit-content">
+                                <h3>智慧掃描識別</h3>
+                                <p>VisionKit技術讓資料輸入變得輕鬆快速，大幅減少人工輸入錯誤。</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item blue">
+                            <span class="benefit-icon">💰</span>
+                            <div class="benefit-content">
+                                <h3>提升營運效率</h3>
+                                <p>減少人工錯誤，節省管理成本，讓您專注於業務發展。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="download-section blue" id="download">
+                <div class="container">
+                    <div class="download-content">
+                        <h2>📱 立即下載體驗</h2>
+                        <p>免費下載 TT310 Inventory App<br>專為 iOS 系統設計，支援 iPhone 及 iPad</p>
+                        <div class="cta-buttons">
+                            <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button blue" target="_blank">
+                                🍎 App Store 免費下載
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tips">
+                <div class="container">
+                    <h2>💡 使用小貼士</h2>
+                    <div class="tips-list">
+                        <div class="tip-item blue">
+                            <h4>📷 最佳掃描效果</h4>
+                            <p>掃描功能在充足光線下效果最佳，建議在明亮環境中使用掃描功能。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contact">
             <div class="container">
-                <h2>✨ 核心功能特色</h2>
-                <p class="features-subtitle">強大功能組合，打造完美庫存管理體驗</p>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 class="blue">📞 需要協助？</h3>
+                        <p><strong>技術支援信箱</strong><br>
+                        <a href="mailto:dwhao84@gmail.com">dwhao84@gmail.com</a></p>
+                        <p><strong>營業時間與服務資訊</strong><br>
+                        請參考官方網站</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3 class="blue">📱 應用程式</h3>
+                        <p>TT310 Inventory App<br>
+                        智慧庫存管理解決方案</p>
+                        <p>支援平台：iOS (iPhone & iPad)</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3 class="blue">🌟 關於我們</h3>
+                        <p>專注於為企業提供高效的庫存管理解決方案，讓庫存管理更智能化。</p>
+                    </div>
+                </div>
                 
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <span class="feature-icon">📱</span>
-                        <h3>互動式庫存導覽與物品資訊</h3>
-                        <p>詳細記錄每項物品的規格、位置與狀態資訊，讓您隨時掌握庫存動態，提升管理效率。</p>
-                    </div>
-                    <div class="feature-card">
-                        <span class="feature-icon">🎯</span>
-                        <h3>個人化管理建議</h3>
-                        <p>根據您的業務需求，提供客製化的庫存管理策略，智慧分析助您做出最佳決策。</p>
-                    </div>
-                    <div class="feature-card">
-                        <span class="feature-icon">📷</span>
-                        <h3>VisionKit智慧掃描技術</h3>
-                        <p>快速掃描條碼、QR碼或文字，自動讀取並建檔物品資料，大幅提升資料輸入效率。</p>
-                    </div>
+                <div class="ads-info blue">
+                    <h4 class="blue">廣告合作夥伴資訊</h4>
+                    <p>本應用程式與 Google AdSense 合作，為您提供相關的廣告內容。我們承諾所有廣告都經過嚴格審核，確保內容適宜且不影響您的使用體驗。</p>
+                    <small>廣告發布商 ID: pub-9103633528733447</small>
                 </div>
-            </div>
-        </section>
-
-        <section class="benefits" id="benefits">
-            <div class="container">
-                <h2>🌟 為什麼選擇TT310 Inventory App？</h2>
                 
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <span class="benefit-icon">📊</span>
-                        <div class="benefit-content">
-                            <h3>高效庫存控制</h3>
-                            <p>從混亂管理到井然有序的完美轉換，讓庫存控制變得輕鬆簡單。</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <span class="benefit-icon">📲</span>
-                        <div class="benefit-content">
-                            <h3>操作簡單直覺</h3>
-                            <p>優雅的使用者介面設計，員工都能快速上手使用，無需複雜培訓。</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <span class="benefit-icon">🔄</span>
-                        <div class="benefit-content">
-                            <h3>即時庫存更新</h3>
-                            <p>進出貨、調撥資訊即時同步，確保庫存資料的準確性與即時性。</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <span class="benefit-icon">📱</span>
-                        <div class="benefit-content">
-                            <h3>iOS原生優化</h3>
-                            <p>專為iPhone和iPad設計，性能卓越，充分發揮蘋果設備的強大功能。</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <span class="benefit-icon">📷</span>
-                        <div class="benefit-content">
-                            <h3>智慧掃描識別</h3>
-                            <p>VisionKit技術讓資料輸入變得輕鬆快速，大幅減少人工輸入錯誤。</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <span class="benefit-icon">💰</span>
-                        <div class="benefit-content">
-                            <h3>提升營運效率</h3>
-                            <p>減少人工錯誤，節省管理成本，讓您專注於業務發展。</p>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 TT310 Inventory App. 版權所有。</p>
+                    <p><strong>TT310 Inventory App - 讓庫存管理更智能化</strong></p>
+                    <p><em>現在下載，開啟您的高效管理之旅</em></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 工地工程師神器頁面 -->
+    <div id="engineer" class="page theme-orange">
+        <header>
+            <nav class="container">
+                <div class="logo orange">工地工程師神器</div>
+                <ul class="nav-links orange">
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#tools">工具</a></li>
+                    <li><a href="#features">功能</a></li>
+                    <li><a href="#contact">聯絡</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" id="home">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>工地工程師神器</h1>
+                        <p class="subtitle">🏗️ 讓工程管理變得簡單高效</p>
+                        <p class="description">
+                            專為工地工程師打造的智慧管理工具！一鍵輸出工程報告，操作簡單不複雜，讓您專注於工程品質而非繁瑣文書作業。
+                        </p>
+                        
+                        <div class="highlight-box orange">
+                            <h3>⚡ 革命性功能</h3>
+                            <p><strong>工程紀錄 → 一鍵輸出報告 → 3秒完成</strong><br>
+                            操作簡單不複雜，3分鐘上手，效率提升10倍！省去95%文書時間</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="download-section" id="download">
+            <section class="tab-container" id="tools">
+                <div class="container">
+                    <h2 class="section-title">🛠️ 專業工具套件</h2>
+                    <p class="section-subtitle">兩大核心模組，滿足工地工程師所有需求</p>
+                    
+                    <div class="tab-navigation">
+                        <button class="tab-button active" onclick="switchTab('recording')">
+                            📝 工程紀錄模組
+                        </button>
+                        <button class="tab-button" onclick="switchTab('management')">
+                            📊 工程管理模組
+                        </button>
+                    </div>
+
+                    <!-- 工程紀錄模組 -->
+                    <div id="recording" class="tab-content active">
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <span class="tool-icon">⚡</span>
+                                <h3>一鍵報告生成器</h3>
+                                <p>革命性核心功能！工程紀錄瞬間轉換為專業報告，告別繁瑣文書作業。</p>
+                                <ul class="tool-features">
+                                    <li>工程紀錄自動整理分類</li>
+                                    <li>3秒生成完整工程報告</li>
+                                    <li>省去95%的文書處理時間</li>
+                                    <li>支援Excel一鍵輸出</li>
+                                    <li>直接分享給監造業主</li>
+                                </ul>
+                                <button class="tool-button" onclick="alert('一鍵報告功能啟動！')">立即體驗</button>
+                            </div>
+
+                            <div class="tool-card">
+                                <span class="tool-icon">📷</span>
+                                <h3>現場拍照紀錄</h3>
+                                <p>拍照即紀錄，自動標註時間地點，工程進度一目了然。</p>
+                                <ul class="tool-features">
+                                    <li>時間戳記防竄改</li>
+                                    <li>自動分類整理相片</li>
+                                    <li>批次上傳雲端備份</li>
+                                    <li>支援語音備註說明</li>
+                                </ul>
+                                <button class="tool-button" onclick="alert('拍照紀錄功能啟動！')">開始紀錄</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 工程管理模組 -->
+                    <div id="management" class="tab-content">
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <span class="tool-icon">📊</span>
+                                <h3>視覺化進度儀表板</h3>
+                                <p>甘特圖進度視覺化呈現，關鍵路徑智慧分析，工程進度一目了然。</p>
+                                <ul class="tool-features">
+                                    <li>甘特圖視覺化進度追蹤</li>
+                                    <li>關鍵路徑自動分析</li>
+                                    <li>工程節點即時更新</li>
+                                    <li>延遲風險提前預警</li>
+                                    <li>多專案同時管理</li>
+                                </ul>
+                                <button class="tool-button" onclick="alert('進度儀表板開啟！')">查看進度</button>
+                            </div>
+
+                            <div class="tool-card">
+                                <span class="tool-icon">👥</span>
+                                <h3>團隊協作平台</h3>
+                                <p>工班、監造、業主即時溝通，訊息不漏接，協作零距離。</p>
+                                <ul class="tool-features">
+                                    <li>即時通訊群組功能</li>
+                                    <li>任務指派與追蹤</li>
+                                    <li>檔案共享協作</li>
+                                    <li>會議排程提醒</li>
+                                    <li>決策紀錄保存</li>
+                                </ul>
+                                <button class="tool-button" onclick="alert('團隊協作啟動！')">加入協作</button>
+                            </div>
+
+                            <div class="tool-card">
+                                <span class="tool-icon">🔍</span>
+                                <h3>品質檢驗管理</h3>
+                                <p>標準化檢驗流程，確保工程品質，通過率大幅提升。</p>
+                                <ul class="tool-features">
+                                    <li>檢驗標準自動提醒</li>
+                                    <li>缺失追蹤改善</li>
+                                    <li>品質報告自動生成</li>
+                                    <li>歷史數據分析</li>
+                                    <li>法規符合性檢查</li>
+                                </ul>
+                                <button class="tool-button" onclick="alert('品質檢驗開始！')">開始檢驗</button>
+                            </div>
+
+                            <div class="tool-card">
+                                <span class="tool-icon">💰</span>
+                                <h3>成本控制中心</h3>
+                                <p>材料、人工、機具成本即時監控，預算超支提前預警。</p>
+                                <ul class="tool-features">
+                                    <li>即時成本監控</li>
+                                    <li>預算執行分析</li>
+                                    <li>材料用量預測</li>
+                                    <li>成本超支預警</li>
+                                    <li>投資報酬率分析</li>
+                                </ul>
+                                <button class="tool-button" onclick="alert('成本控制啟動！')">查看成本</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tab-container" id="features">
+                <div class="container">
+                    <h2 class="section-title">🌟 為什麼選擇我們？</h2>
+                    <p class="section-subtitle">專為工地環境設計，真正了解工程師的需求</p>
+                    
+                    <div class="highlight-box orange">
+                        <h3>🎯 四大核心功能</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">⚡ 一鍵報告生成</h4>
+                                <p>3秒完成，省去95%文書時間</p>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">📊 甘特圖視覺化</h4>
+                                <p>進度追蹤，關鍵路徑分析</p>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">📋 智慧快速表單</h4>
+                                <p>預設常用表單，自動填入</p>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">🏗️ 操作超簡單</h4>
+                                <p>3分鐘上手，不複雜培訓</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tools-grid" style="margin-top: 3rem;">
+                        <div class="tool-card">
+                            <span class="tool-icon">📱</span>
+                            <h3>手機平板都能用</h3>
+                            <p>不挑設備，iOS、Android都支援，現有設備直接使用。</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">☁️</span>
+                            <h3>雲端同步備份</h3>
+                            <p>資料永不遺失，多設備同步，隨時隨地查看工程紀錄。</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🔒</span>
+                            <h3>資料安全保障</h3>
+                            <p>銀行級加密保護，工程機密安全無虞，符合資安標準。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contact">
             <div class="container">
-                <div class="download-content">
-                    <h2>📱 立即下載體驗</h2>
-                    <p>免費下載 TT310 Inventory App<br>專為 iOS 系統設計，支援 iPhone 及 iPad</p>
-                    <div class="cta-buttons">
-                        <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button" target="_blank">
-                            🍎 App Store 免費下載
-                        </a>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 class="orange">📞 需要協助？</h3>
+                        <p><strong>技術支援信箱</strong><br>
+                        <a href="mailto:dwhao84@gmail.com">dwhao84@gmail.com</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3 class="orange">🛠️ 工程師神器</h3>
+                        <p>工地工程師專用管理工具<br>
+                        智慧化工程解決方案</p>
+                        <p>支援平台：iOS</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3 class="orange">🌟 關於我們</h3>
+                        <p>專注於為工地工程師提供高效的工程管理解決方案，讓工程管理更智能化。</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="tips">
-            <div class="container">
-                <h2>💡 使用小貼士</h2>
-                <div class="tips-list">
-                    <div class="tip-item">
-                        <h4>📷 最佳掃描效果</h4>
-                        <p>掃描功能在充足光線下效果最佳，建議在明亮環境中使用掃描功能。</p>
-                    </div>
+                
+                <div class="ads-info orange">
+                    <h4 class="orange">技術支援資訊</h4>
+                    <p>我們提供專業的技術支援服務，協助您快速上手並解決使用過程中的任何問題。專業團隊隨時為您服務。</p>
+                    <small>技術支援信箱：dwhao84@gmail.com</small>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 工地工程師神器. 版權所有.</p>
+                    <p><strong>讓工程管理更智能化，讓工程師更專業</strong></p>
+                    <p><em>聯絡我們：dwhao84@gmail.com</em></p>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>📞 需要協助？</h3>
-                    <p><strong>技術支援信箱</strong><br>
-                    <a href="mailto:dwhao84@gmail.com">dwhao84@gmail.com</a></p>
-                    <p><strong>營業時間與服務資訊</strong><br>
-                    請參考官方網站</p>
-                </div>
-                <div class="footer-section">
-                    <h3>📱 應用程式</h3>
-                    <p>TT310 Inventory App<br>
-                    智慧庫存管理解決方案</p>
-                    <p>支援平台：iOS (iPhone & iPad)</p>
-                </div>
-                <div class="footer-section">
-                    <h3>🌟 關於我們</h3>
-                    <p>專注於為企業提供高效的庫存管理解決方案，讓庫存管理更智能化。</p>
-                </div>
-            </div>
-            
-            <div class="ads-info">
-                <h4>廣告合作夥伴資訊</h4>
-                <p>本應用程式與 Google AdSense 合作，為您提供相關的廣告內容。我們承諾所有廣告都經過嚴格審核，確保內容適宜且不影響您的使用體驗。</p>
-                <small>廣告發布商 ID: pub-9103633528733447</small>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 TT310 Inventory App. 版權所有。</p>
-                <p><strong>TT310 Inventory App - 讓庫存管理更智能化</strong></p>
-                <p><em>現在下載，開啟您的高效管理之旅</em></p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
+        // 頁面切換功能
+        function switchPage(pageId) {
+            // 隱藏所有頁面
+            const allPages = document.querySelectorAll('.page');
+            allPages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 移除所有切換按鈕的 active 狀態
+            const allSwitchButtons = document.querySelectorAll('.switch-button');
+            allSwitchButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // 顯示選中的頁面
+            document.getElementById(pageId).classList.add('active');
+
+            // 添加對應按鈕的 active 狀態
+            if (pageId === 'tt310') {
+                document.querySelector('.switch-button.blue').classList.add('active');
+                document.body.className = '';
+            } else if (pageId === 'engineer') {
+                document.querySelector('.switch-button.orange').classList.add('active');
+                document.body.className = '';
+            }
+
+            // 滾動到頂部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 標籤切換功能（工程師神器頁面專用）
+        function switchTab(tabName) {
+            // 隱藏所有標籤內容
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // 移除所有按鈕的 active 狀態
+            const allButtons = document.querySelectorAll('.tab-button');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // 顯示選中的標籤內容
+            document.getElementById(tabName).classList.add('active');
+
+            // 添加選中按鈕的 active 狀態
+            event.target.classList.add('active');
+        }
+
         // 平滑滾動效果
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -683,45 +1306,29 @@
         }, observerOptions);
 
         // 為卡片元素添加動畫
-        document.querySelectorAll('.feature-card, .benefit-item, .tip-item').forEach(el => {
+        document.querySelectorAll('.feature-card, .benefit-item, .tip-item, .tool-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
 
-        // 下載按鈕功能
-        function downloadApp() {
-            // 直接打開 TT310 App Store 頁面
-            window.open('https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB', '_blank');
-        }
-
-        // 為所有 CTA 按鈕添加點擊效果（保留給未來使用）
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // 如果是內部連結，使用平滑滾動
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+        // 添加滾動效果
+        window.addEventListener('scroll', () => {
+            const headers = document.querySelectorAll('header');
+            headers.forEach(header => {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
                 }
-                // App Store 連結會直接開啟，不需要特殊處理
             });
         });
 
-        // 添加滾動效果
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
+        // 頁面載入時初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 確保預設顯示 TT310 頁面
+            switchPage('tt310');
         });
     </script>
 
