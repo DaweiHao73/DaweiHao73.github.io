@@ -68,19 +68,30 @@ function switchTab(tabName) {
 
 // 語言切換功能
 function switchLanguage(lang) {
+    console.log('切換語言到:', lang);
+    
     // 切換語言按鈕 active 狀態
     document.querySelectorAll('.lang-button').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+        }
     });
 
     // 切換所有 data-lang-inline 的內容
     document.querySelectorAll('[data-lang-inline]').forEach(el => {
-        el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
+        el.classList.remove('active');
+        if (el.getAttribute('data-lang-inline') === lang) {
+            el.classList.add('active');
+        }
     });
 
     // 切換所有 data-lang 的內容（如果有用到 data-lang 區塊）
     document.querySelectorAll('[data-lang]').forEach(el => {
-        el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+        el.classList.remove('active');
+        if (el.getAttribute('data-lang') === lang) {
+            el.classList.add('active');
+        }
     });
 
     // 更新頁面標題
@@ -89,7 +100,7 @@ function switchLanguage(lang) {
     // 儲存語言
     localStorage.setItem('selectedLanguage', lang);
 
-    console.log('切換語言:', lang);
+    console.log('語言切換完成:', lang);
 }
 
 // 更新頁面標題
@@ -115,18 +126,35 @@ function updatePageTitle(lang) {
 
 // 頁面載入時初始化
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('頁面載入完成，開始初始化...');
+    
     // 確保預設顯示 TT310 頁面
     switchPage('tt310');
     
     // 初始化語言設定
     const savedLang = localStorage.getItem('selectedLanguage') || 'zh-TW';
+    console.log('載入已儲存的語言:', savedLang);
     switchLanguage(savedLang);
 
-    // 綁定語言切換事件
+    // 綁定語言切換事件 - 使用事件委派確保動態元素也能工作
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('lang-button')) {
+            e.preventDefault();
+            e.stopPropagation();
+            const lang = e.target.getAttribute('data-lang');
+            console.log('點擊語言按鈕:', lang);
+            switchLanguage(lang);
+        }
+    });
+
+    // 也保留原有的事件綁定作為備用
     document.querySelectorAll('.lang-button').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
-            switchLanguage(btn.getAttribute('data-lang'));
+            e.stopPropagation();
+            const lang = this.getAttribute('data-lang');
+            console.log('點擊語言按鈕 (備用):', lang);
+            switchLanguage(lang);
         });
     });
 
