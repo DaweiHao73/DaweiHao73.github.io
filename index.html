@@ -870,9 +870,9 @@
 <body>
     <!-- 語言切換器 -->
     <div class="language-switcher">
-        <button class="lang-button active" onclick="switchLanguage('zh-TW')" data-lang="zh-TW">繁體中文</button>
-        <button class="lang-button" onclick="switchLanguage('ja')" data-lang="ja">日本語</button>
-        <button class="lang-button" onclick="switchLanguage('en')" data-lang="en">English</button>
+        <a href="#" class="lang-button active" data-lang="zh-TW">繁體中文</a>
+        <a href="#" class="lang-button" data-lang="ja">日本語</a>
+        <a href="#" class="lang-button" data-lang="en">English</a>
     </div>
 
     <!-- 頁面切換按鈕 -->
@@ -1568,6 +1568,14 @@
             // 初始化語言設定
             const savedLang = localStorage.getItem('selectedLanguage') || 'zh-TW';
             switchLanguage(savedLang);
+
+            // 綁定語言切換事件
+            document.querySelectorAll('.lang-button').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    switchLanguage(btn.getAttribute('data-lang'));
+                });
+            });
         });
 
         // 語言切換功能
