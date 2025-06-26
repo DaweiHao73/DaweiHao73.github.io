@@ -1517,6 +1517,8 @@
         // 平滑滾動效果
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                // 如果 href 僅為 "#"，不做任何事
+                if (this.getAttribute('href') === '#') return;
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1583,41 +1585,26 @@
 
         // 語言切換功能
         function switchLanguage(lang) {
-            // 更新語言按鈕狀態
-            const langButtons = document.querySelectorAll('.lang-button');
-            langButtons.forEach(button => {
-                button.classList.remove('active');
-                if (button.getAttribute('data-lang') === lang) {
-                    button.classList.add('active');
-                }
+            // 切換語言按鈕 active 狀態
+            document.querySelectorAll('.lang-button').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
 
-            // 更新當前頁面的語言按鈕顏色
-            const currentPage = document.querySelector('.page.active');
-            if (currentPage && currentPage.id === 'engineer') {
-                const activeButton = document.querySelector('.lang-button.active');
-                if (activeButton) {
-                    activeButton.classList.add('orange');
-                }
-            }
-
-            // 隱藏所有語言內容
-            const allLangElements = document.querySelectorAll('[data-lang], [data-lang-inline]');
-            allLangElements.forEach(element => {
-                element.classList.remove('active');
+            // 切換所有 data-lang-inline 的內容
+            document.querySelectorAll('[data-lang-inline]').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
             });
 
-            // 顯示選中語言的內容
-            const selectedLangElements = document.querySelectorAll(`[data-lang="${lang}"], [data-lang-inline="${lang}"]`);
-            selectedLangElements.forEach(element => {
-                element.classList.add('active');
+            // 切換所有 data-lang 的內容（如果有用到 data-lang 區塊）
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-lang') === lang);
             });
-
-            // 保存語言設定到本地存儲
-            localStorage.setItem('selectedLanguage', lang);
 
             // 更新頁面標題
             updatePageTitle(lang);
+
+            // 儲存語言
+            localStorage.setItem('selectedLanguage', lang);
         }
 
         // 更新頁面標題
