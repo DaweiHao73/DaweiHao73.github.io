@@ -809,9 +809,72 @@
                 font-size: 1.2rem;
             }
         }
+
+        /* 語言切換器樣式 */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2001;
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-button {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-button.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .lang-button.active.orange {
+            background: linear-gradient(135deg, #ff9a56, #ff6b35);
+        }
+
+        /* 隱藏非當前語言的內容 */
+        [data-lang] {
+            display: none;
+        }
+
+        [data-lang].active {
+            display: block;
+        }
+
+        /* 內聯元素的多語言支援 */
+        [data-lang-inline] {
+            display: none;
+        }
+
+        [data-lang-inline].active {
+            display: inline;
+        }
     </style>
 </head>
 <body>
+    <!-- 語言切換器 -->
+    <div class="language-switcher">
+        <button class="lang-button active" onclick="switchLanguage('zh-TW')" data-lang="zh-TW">繁體中文</button>
+        <button class="lang-button" onclick="switchLanguage('ja')" data-lang="ja">日本語</button>
+        <button class="lang-button" onclick="switchLanguage('en')" data-lang="en">English</button>
+    </div>
+
     <!-- 頁面切換按鈕 -->
     <div class="page-switcher">
         <button class="switch-button blue active" onclick="switchPage('tt310')" title="TT310 庫存管理">
@@ -826,13 +889,32 @@
     <div id="tt310" class="page theme-blue active">
         <header>
             <nav class="container">
-                <div class="logo blue">TT310 Inventory</div>
+                <div class="logo blue">
+                    <span data-lang-inline="zh-TW" class="active">TT310 Inventory</span>
+                    <span data-lang-inline="ja">TT310 在庫管理</span>
+                    <span data-lang-inline="en">TT310 Inventory</span>
+                </div>
                 <ul class="nav-links blue">
-                    <li><a href="#home">首頁</a></li>
-                    <li><a href="#features">功能</a></li>
-                    <li><a href="#benefits">優勢</a></li>
-                    <li><a href="#download">下載</a></li>
-                    <li><a href="#contact">聯絡</a></li>
+                    <li><a href="#home" data-lang-inline="zh-TW" class="active">首頁</a></li>
+                    <li><a href="#home" data-lang-inline="ja">ホーム</a></li>
+                    <li><a href="#home" data-lang-inline="en">Home</a></li>
+                    
+                    <li><a href="#features" data-lang-inline="zh-TW" class="active">功能</a></li>
+                    <li><a href="#features" data-lang-inline="ja">機能</a></li>
+                    <li><a href="#features" data-lang-inline="en">Features</a></li>
+                    
+                    
+                    <li><a href="#benefits" data-lang-inline="zh-TW" class="active">優勢</a></li>
+                    <li><a href="#benefits" data-lang-inline="ja">メリット</a></li>
+                    <li><a href="#benefits" data-lang-inline="en">Benefits</a></li>
+                    
+                    <li><a href="#download" data-lang-inline="zh-TW" class="active">下載</a></li>
+                    <li><a href="#download" data-lang-inline="ja">ダウンロード</a></li>
+                    <li><a href="#download" data-lang-inline="en">Download</a></li>
+                    
+                    <li><a href="#contact" data-lang-inline="zh-TW" class="active">聯絡</a></li>
+                    <li><a href="#contact" data-lang-inline="ja">お問い合わせ</a></li>
+                    <li><a href="#contact" data-lang-inline="en">Contact</a></li>
                 </ul>
             </nav>
         </header>
@@ -841,17 +923,31 @@
             <section class="hero" id="home">
                 <div class="container">
                     <div class="hero-content">
-                        <h1>TT310 Inventory App</h1>
-                        <p class="subtitle">📦 讓庫存管理變得簡單高效</p>
+                        <h1>
+                            <span data-lang-inline="zh-TW" class="active">TT310 Inventory App</span>
+                            <span data-lang-inline="ja">TT310 在庫管理アプリ</span>
+                            <span data-lang-inline="en">TT310 Inventory App</span>
+                        </h1>
+                        <p class="subtitle">
+                            <span data-lang-inline="zh-TW" class="active">📦 讓庫存管理變得簡單高效</span>
+                            <span data-lang-inline="ja">📦 在庫管理をシンプルで効率的に</span>
+                            <span data-lang-inline="en">📦 Make inventory management simple and efficient</span>
+                        </p>
                         <p class="description">
-                            專業庫存管理助手！專為iOS設備打造，結合先進的VisionKit技術與實用功能，為您的業務提供全方位的庫存控制，讓每項物品都在掌握之中。
+                            <span data-lang-inline="zh-TW" class="active">專業庫存管理助手！專為iOS設備打造，結合先進的VisionKit技術與實用功能，為您的業務提供全方位的庫存控制，讓每項物品都在掌握之中。</span>
+                            <span data-lang-inline="zh-CN">专业库存管理助手！专为iOS设备打造，结合先进的VisionKit技术与实用功能，为您的业务提供全方位的库存控制，让每项物品都在掌握之中。</span>
+                            <span data-lang-inline="en">Professional inventory management assistant! Built specifically for iOS devices, combining advanced VisionKit technology with practical features to provide comprehensive inventory control for your business, keeping every item under your control.</span>
                         </p>
                         <div class="cta-buttons">
                             <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button blue" target="_blank">
-                                🍎 App Store 下載
+                                <span data-lang-inline="zh-TW" class="active">🍎 App Store 下載</span>
+                                <span data-lang-inline="ja">🍎 App Store ダウンロード</span>
+                                <span data-lang-inline="en">🍎 App Store Download</span>
                             </a>
-                            <a href="#features" class="cta-button secondary">
-                                📋 了解功能
+                            <a href="mailto:dwhao84@gmail.com?subject=TT310庫存管理諮詢" class="cta-button secondary" target="_blank">
+                                <span data-lang-inline="zh-TW" class="active">📧 立即諮詢</span>
+                                <span data-lang-inline="ja">📧 お問い合わせ</span>
+                                <span data-lang-inline="en">📧 Contact Now</span>
                             </a>
                         </div>
                     </div>
@@ -860,8 +956,16 @@
 
             <section class="features" id="features">
                 <div class="container">
-                    <h2>✨ 核心功能特色</h2>
-                    <p class="features-subtitle">強大功能組合，打造完美庫存管理體驗</p>
+                    <h2>
+                        <span data-lang-inline="zh-TW" class="active">✨ 核心功能特色</span>
+                        <span data-lang-inline="ja">✨ 主要機能</span>
+                        <span data-lang-inline="en">✨ Core Features</span>
+                    </h2>
+                    <p class="features-subtitle">
+                        <span data-lang-inline="zh-TW" class="active">強大功能組合，打造完美庫存管理體驗</span>
+                        <span data-lang-inline="ja">強力な機能の組み合わせで、完璧な在庫管理体験を実現</span>
+                        <span data-lang-inline="en">Powerful feature combination, creating the perfect inventory management experience</span>
+                    </p>
                     
                     <div class="feature-grid">
                         <div class="feature-card blue">
@@ -958,6 +1062,9 @@
                             <a href="https://apps.apple.com/tw/app/tt310/id6747388305?l=en-GB" class="cta-button blue" target="_blank">
                                 🍎 App Store 免費下載
                             </a>
+                            <a href="mailto:dwhao84@gmail.com?subject=TT310庫存管理諮詢" class="cta-button secondary" target="_blank">
+                                📧 立即諮詢
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1025,13 +1132,31 @@
     <div id="engineer" class="page theme-orange">
         <header>
             <nav class="container">
-                <div class="logo orange">工地查驗神器 Build Tracker</div>
+                <div class="logo orange">
+                    <span data-lang-inline="zh-TW" class="active">工地查驗神器 Build Tracker</span>
+                    <span data-lang-inline="ja">建設現場検査ツール Build Tracker</span>
+                    <span data-lang-inline="en">Build Tracker - Construction Inspector Tool</span>
+                </div>
                 <ul class="nav-links orange">
-                    <li><a href="#home">首頁</a></li>
-                    <li><a href="#tools">工具</a></li>
-                    <li><a href="#features">功能</a></li>
-                    <li><a href="#download">下載</a></li>
-                    <li><a href="#contact">聯絡</a></li>
+                    <li><a href="#home" data-lang-inline="zh-TW" class="active">首頁</a></li>
+                    <li><a href="#home" data-lang-inline="ja">ホーム</a></li>
+                    <li><a href="#home" data-lang-inline="en">Home</a></li>
+                    
+                    <li><a href="#tools" data-lang-inline="zh-TW" class="active">工具</a></li>
+                    <li><a href="#tools" data-lang-inline="ja">ツール</a></li>
+                    <li><a href="#tools" data-lang-inline="en">Tools</a></li>
+                    
+                    <li><a href="#features" data-lang-inline="zh-TW" class="active">功能</a></li>
+                    <li><a href="#features" data-lang-inline="ja">機能</a></li>
+                    <li><a href="#features" data-lang-inline="en">Features</a></li>
+                    
+                    <li><a href="#download" data-lang-inline="zh-TW" class="active">下載</a></li>
+                    <li><a href="#download" data-lang-inline="ja">ダウンロード</a></li>
+                    <li><a href="#download" data-lang-inline="en">Download</a></li>
+                    
+                    <li><a href="#contact" data-lang-inline="zh-TW" class="active">聯絡</a></li>
+                    <li><a href="#contact" data-lang-inline="ja">お問い合わせ</a></li>
+                    <li><a href="#contact" data-lang-inline="en">Contact</a></li>
                 </ul>
             </nav>
         </header>
@@ -1040,16 +1165,33 @@
             <section class="hero" id="home">
                 <div class="container">
                     <div class="hero-content">
-                        <h1>工地查驗神器 Build Tracker</h1>
-                        <p class="subtitle">🏗️ 讓工程管理變得簡單高效</p>
+                        <h1>
+                            <span data-lang-inline="zh-TW" class="active">工地查驗神器 Build Tracker</span>
+                            <span data-lang-inline="ja">建設現場検査ツール Build Tracker</span>
+                            <span data-lang-inline="en">Build Tracker - Construction Inspector Tool</span>
+                        </h1>
+                        <p class="subtitle">
+                            <span data-lang-inline="zh-TW" class="active">🏗️ 讓工程管理變得簡單高效</span>
+                            <span data-lang-inline="ja">🏗️ 建設管理をシンプルで効率的に</span>
+                            <span data-lang-inline="en">🏗️ Make construction management simple and efficient</span>
+                        </p>
                         <p class="description">
-                            專為工地工程師打造的智慧管理工具！一鍵輸出工程報告，操作簡單不複雜，讓您專注於工程品質而非繁瑣文書作業。
+                            <span data-lang-inline="zh-TW" class="active">專為工地工程師打造的智慧管理工具！一鍵輸出工程報告，操作簡單不複雜，讓您專注於工程品質而非繁瑣文書作業。</span>
+                            <span data-lang-inline="ja">建設現場のエンジニア専用に設計されたスマート管理ツール！ワンクリックで建設報告書を出力、操作がシンプルで、建設品質に集中でき、煩雑な文書作業から解放されます。</span>
+                            <span data-lang-inline="en">Smart management tool built specifically for construction engineers! One-click report generation, simple operation, letting you focus on construction quality rather than tedious paperwork.</span>
                         </p>
                         
                         <div class="highlight-box orange">
-                            <h3>⚡ 革命性功能</h3>
-                            <p><strong>工程紀錄 → 一鍵輸出報告 → 3秒完成</strong><br>
-                            操作簡單不複雜，3分鐘上手，效率提升10倍！省去95%文書時間</p>
+                            <h3>
+                                <span data-lang-inline="zh-TW" class="active">⚡ 革命性功能</span>
+                                <span data-lang-inline="ja">⚡ 革新的機能</span>
+                                <span data-lang-inline="en">⚡ Revolutionary Features</span>
+                            </h3>
+                            <p>
+                                <span data-lang-inline="zh-TW" class="active"><strong>工程紀錄 → 一鍵輸出報告 → 3秒完成</strong><br>操作簡單不複雜，3分鐘上手，效率提升10倍！省去95%文書時間</span>
+                                <span data-lang-inline="ja"><strong>建設記録 → ワンクリック報告書 → 3秒完了</strong><br>操作がシンプル、3分で習得、効率10倍向上！文書作業時間95%削減</span>
+                                <span data-lang-inline="en"><strong>Construction Records → One-click Report → 3 Seconds</strong><br>Simple operation, 3 minutes to master, 10x efficiency improvement! Save 95% paperwork time</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1057,15 +1199,27 @@
 
             <section class="tab-container" id="tools">
                 <div class="container">
-                    <h2 class="section-title">🛠️ 專業工具套件</h2>
-                    <p class="section-subtitle">兩大核心模組，滿足工地工程師所有需求</p>
+                    <h2 class="section-title">
+                        <span data-lang-inline="zh-TW" class="active">🛠️ 專業工具套件</span>
+                        <span data-lang-inline="ja">🛠️ プロツールセット</span>
+                        <span data-lang-inline="en">🛠️ Professional Tool Suite</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        <span data-lang-inline="zh-TW" class="active">兩大核心模組，滿足工地工程師所有需求</span>
+                        <span data-lang-inline="zh-CN">两大核心模块，满足工地工程师所有需求</span>
+                        <span data-lang-inline="en">Two core modules, meeting all needs of construction engineers</span>
+                    </p>
                     
                     <div class="tab-navigation">
                         <button class="tab-button active" onclick="switchTab('recording')">
-                            📝 工程紀錄模組
+                            <span data-lang-inline="zh-TW" class="active">📝 工程紀錄模組</span>
+                            <span data-lang-inline="ja">📝 建設記録モジュール</span>
+                            <span data-lang-inline="en">📝 Engineering Records Module</span>
                         </button>
                         <button class="tab-button" onclick="switchTab('management')">
-                            📊 工程管理模組
+                            <span data-lang-inline="zh-TW" class="active">📊 工程管理模組</span>
+                            <span data-lang-inline="ja">📊 建設管理モジュール</span>
+                            <span data-lang-inline="en">📊 Project Management Module</span>
                         </button>
                     </div>
 
@@ -1187,14 +1341,26 @@
             <section class="download-section orange" id="download">
                 <div class="container">
                     <div class="download-content">
-                        <h2>🚀 立即體驗工地查驗神器</h2>
-                        <p>專為工地查驗打造的智慧管理工具<br>讓工程管理更智能化，讓查驗更專業</p>
+                        <h2>
+                            <span data-lang-inline="zh-TW" class="active">🚀 立即體驗工地查驗神器</span>
+                            <span data-lang-inline="ja">🚀 建設現場検査ツールを今すぐ体験</span>
+                            <span data-lang-inline="en">🚀 Experience Build Tracker Now</span>
+                        </h2>
+                        <p>
+                            <span data-lang-inline="zh-TW" class="active">專為工地查驗打造的智慧管理工具<br>讓工程管理更智能化，讓查驗更專業</span>
+                            <span data-lang-inline="ja">建設現場検査専用に設計されたスマート管理ツール<br>建設管理をよりスマートに、検査をよりプロフェッショナルに</span>
+                            <span data-lang-inline="en">Smart management tool built for construction inspection<br>Make project management smarter, make inspection more professional</span>
+                        </p>
                         <div class="cta-buttons">
                             <a href="mailto:dwhao84@gmail.com?subject=工地查驗神器諮詢" class="cta-button orange" target="_blank">
-                                📧 立即諮詢
+                                <span data-lang-inline="zh-TW" class="active">📧 立即諮詢</span>
+                                <span data-lang-inline="ja">📧 お問い合わせ</span>
+                                <span data-lang-inline="en">📧 Contact Now</span>
                             </a>
-                            <a href="#contact" class="cta-button secondary">
-                                📞 聯絡我們
+                            <a href="mailto:dwhao84@gmail.com?subject=工地查驗神器聯絡" class="cta-button secondary" target="_blank">
+                                <span data-lang-inline="zh-TW" class="active">📞 聯絡我們</span>
+                                <span data-lang-inline="ja">📞 お問い合わせ</span>
+                                <span data-lang-inline="en">📞 Contact Us</span>
                             </a>
                         </div>
                     </div>
@@ -1287,6 +1453,23 @@
                 document.body.className = '';
             }
 
+            // 更新語言按鈕顏色
+            const langButtons = document.querySelectorAll('.lang-button');
+            langButtons.forEach(button => {
+                button.classList.remove('orange');
+            });
+
+            if (pageId === 'engineer') {
+                const activeLangButton = document.querySelector('.lang-button.active');
+                if (activeLangButton) {
+                    activeLangButton.classList.add('orange');
+                }
+            }
+
+            // 更新頁面標題
+            const currentLang = localStorage.getItem('selectedLanguage') || 'zh-TW';
+            updatePageTitle(currentLang);
+
             // 滾動到頂部
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1365,7 +1548,71 @@
         document.addEventListener('DOMContentLoaded', function() {
             // 確保預設顯示 TT310 頁面
             switchPage('tt310');
+            
+            // 初始化語言設定
+            const savedLang = localStorage.getItem('selectedLanguage') || 'zh-TW';
+            switchLanguage(savedLang);
         });
+
+        // 語言切換功能
+        function switchLanguage(lang) {
+            // 更新語言按鈕狀態
+            const langButtons = document.querySelectorAll('.lang-button');
+            langButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('active');
+                }
+            });
+
+            // 更新當前頁面的語言按鈕顏色
+            const currentPage = document.querySelector('.page.active');
+            if (currentPage && currentPage.id === 'engineer') {
+                const activeButton = document.querySelector('.lang-button.active');
+                if (activeButton) {
+                    activeButton.classList.add('orange');
+                }
+            }
+
+            // 隱藏所有語言內容
+            const allLangElements = document.querySelectorAll('[data-lang], [data-lang-inline]');
+            allLangElements.forEach(element => {
+                element.classList.remove('active');
+            });
+
+            // 顯示選中語言的內容
+            const selectedLangElements = document.querySelectorAll(`[data-lang="${lang}"], [data-lang-inline="${lang}"]`);
+            selectedLangElements.forEach(element => {
+                element.classList.add('active');
+            });
+
+            // 保存語言設定到本地存儲
+            localStorage.setItem('selectedLanguage', lang);
+
+            // 更新頁面標題
+            updatePageTitle(lang);
+        }
+
+        // 更新頁面標題
+        function updatePageTitle(lang) {
+            const currentPage = document.querySelector('.page.active');
+            if (!currentPage) return;
+
+            let title = '';
+            if (currentPage.id === 'tt310') {
+                if (lang === 'zh-TW') title = 'Da-Wei Hao - iOS developer';
+                else if (lang === 'ja') title = 'Da-Wei Hao - iOS 開發者';
+                else title = 'Da-Wei Hao - iOS Developer';
+            } else if (currentPage.id === 'engineer') {
+                if (lang === 'zh-TW') title = '工地查驗神器 Build Tracker';
+                else if (lang === 'ja') title = '建設現場検査ツール Build Tracker';
+                else title = 'Build Tracker - Construction Inspector Tool';
+            }
+
+            if (title) {
+                document.title = title;
+            }
+        }
     </script>
 
     <!-- ads.txt 內容供搜索引擎識別 -->
