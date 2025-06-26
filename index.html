@@ -830,6 +830,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            pointer-events: auto;
         }
 
         .lang-button:hover {
@@ -842,6 +843,8 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border-color: transparent;
+            /* 保證 active 也能點擊 */
+            pointer-events: auto;
         }
 
         .lang-button.active.orange {
